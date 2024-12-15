@@ -42,7 +42,7 @@
       </div>
 
       <div class="row gy-4 my-4">
-        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+        <div class="col-lg-12" data-aos="fade-up" data-aos-delay="300">
           <iframe class="w-100" height="400px"
             src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d88485.8812282003!2d50.3484138!3d33.8627591!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2s!4v1730539086966!5m2!1sen!2s"
             allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -50,7 +50,7 @@
         <!-- End Google Maps -->
 
         <!-- End Google Maps -->
-        <div class="col-lg-6 ">
+        {{-- <div class="col-lg-6 ">
           <form action="forms/contact.php" method="post" data-aos="fade-up" data-aos-delay="400">
             <div class="row gy-4">
 
@@ -72,7 +72,7 @@
               <button class="btn main-btn-color text-white col-12 my-5" type="submit">ارسال پیام</button>
             </div>
           </form>
-        </div><!-- End Contact Form -->
+        </div><!-- End Contact Form --> --}}
 
       </div>
 

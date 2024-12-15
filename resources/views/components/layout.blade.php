@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="{{asset('bootstrap5/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('bootstrap-icons/bootstrap-icons.css')}}">
     <link rel="stylesheet" href="{{asset('style/style.css')}}">
-    <link rel="stylesheet" href="{{asset('style/test/now-ui-dashboard.css')}}">
+    <link rel="stylesheet" href="{{asset('style/now-ui-dashboard/now-ui-dashboard.css')}}">
     <link rel="stylesheet" href="{{asset('swiper/swiper-bundle.min.css')}}">
     <script src="{{asset('swiper/swiper-bundle.min.js')}}"></script>
+    <script src="{{asset('js/main.js')}}"></script>
   
     {{-- <script src="{{asset('bootstrap5/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('bootstrap5/bootstrap.min.js')}}"></script> --}}

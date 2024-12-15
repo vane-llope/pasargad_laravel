@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('image');
             $table->string('title');
-            $table->string('summary');
+            $table->longText('summary');
             $table->longText('content');
             $table->string('tags');
             $table->timestamps();

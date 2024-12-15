@@ -6,9 +6,9 @@
           <div class="row my-5">
                <div class="col-md-8">
                     <img class="w-100" src="{{asset('storage/'.$article->image)}}" alt="" srcset="">
-                    <h1>{{$article['title']}}</h1>
+                    <h1 class="my-4">{{$article['title']}}</h1>
                     <p>{{$article['summary']}}</p>
-                    <p>{{$article['content']}}</p>
+                    <div class="mb-5 " id="displayText">{!! nl2br(e($article['content'])) !!}</div>
                     <x-tags :tagsCsv="$article['tags']" />
                </div>
                <div class="col-md-4">

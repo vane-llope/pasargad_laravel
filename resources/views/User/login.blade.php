@@ -28,7 +28,7 @@
           </div>
           <button type="submit" class="btn main-btn-color text-light mt-3 w-100">Submit The Form</button>
         </form>
-        <a class="nav-link text-dark mt-3" href="/projectTypes/manage"><p>رمز عبور خود را فراموش کردید؟<span class="text-danger">کلیک کنید</span></p></a>
+        {{-- <a class="nav-link text-dark mt-3" href="/projectTypes/manage"><p>رمز عبور خود را فراموش کردید؟<span class="text-danger">کلیک کنید</span></p></a> --}}
     </div>
   </div>
 </div>

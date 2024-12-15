@@ -19,7 +19,7 @@ class UserController extends Controller
       ]);
       if (auth()->attempt($formFields)) {
          $request->session()->regenerate();
-         return redirect('/')->with('message', auth()->user()->name . ' خوش آمدید ');
+         return redirect('/articles/manage')->with('message', auth()->user()->name . ' خوش آمدید ');
       }
       return back()->withErrors(['message' => 'اطلاعات نامعتبراند']);
    }

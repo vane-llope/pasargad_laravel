@@ -54,8 +54,8 @@
                         زبان
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown4">
-                            <li><a class="dropdown-item text-light fw-bold" href="">فارسی</a></li>
-                            <li><a class="dropdown-item text-light fw-bold" href="">انکیلیسی</a></li>
+                            <li><a class="dropdown-item text-light fw-bold" href="{{ url('/setlocale/fa') }}">فارسی</a></li>
+                            <li><a class="dropdown-item text-light fw-bold" href="{{ url('/setlocale/en') }}">انکیلیسی</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">

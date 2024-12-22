@@ -10,6 +10,23 @@ use App\Http\Controllers\StoneTypeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
+//Middleware of localization
+use App\Http\Middleware\LocaleMiddleware;
+
+Route::middleware([LocaleMiddleware::class])->group(function () {
+
+    Route::get('/setlocale/{locale}', function ($locale) {
+        if (!in_array($locale, ['en', 'fa'])) {
+            abort(400);
+        }
+        session(['locale' => $locale]);
+        session()->save(); // Force session save
+        return redirect()->back();
+    });
+
+});
+
+
 //Articles
 Route::get('/articles', [ArticleController::class, 'index']);
 Route::get('/articles/create', [ArticleController::class, 'create'])->middleware('auth');
@@ -76,3 +93,5 @@ Route::get('/about', [HomeController::class, 'about']);
 Route::get('/user/login', [UserController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/user/logout', [UserController::class, 'logout']);
 Route::post('/user/authenticate', [UserController::class, 'authenticate']);
+
+

@@ -1,6 +1,6 @@
 <x-layout>
   @include('partials._navbar')
-  @include('partials._gallery')
+  <div class="space"></div>
      <div class="container">
   @include('partials._search')
          @if(count($mines)==0) 

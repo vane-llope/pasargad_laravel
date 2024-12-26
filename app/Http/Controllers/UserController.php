@@ -21,7 +21,7 @@ class UserController extends Controller
          $request->session()->regenerate();
          return redirect('/articles/manage')->with('message', auth()->user()->name . ' خوش آمدید ');
       }
-      return back()->withErrors(['message' => 'اطلاعات نامعتبراند']);
+      return redirect('/user/login')->withErrors(['message' => 'اطلاعات نامعتبراند']);
    }
 
    public function logout(Request $request)

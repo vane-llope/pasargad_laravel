@@ -11,14 +11,20 @@
             <div class="container mb-5">
                 <div class="row g-5 ">
                   @foreach ($projects as $project)
-                  <a  href="/projects/{{$project->id}}" class="container col-md-6 text-decoration-none" data-aos="fade-up"
+                  <a  href="/projects/{{$project->id}}" class="container  col-md-6 text-decoration-none" data-aos="fade-up"
                       data-aos-delay="100">
-                      <div class=" service-item d-flex justify-content-around p-5 flex-column position-relative align-items-center"
-                          style="height:50vh; background-image: url({{asset('storage/'.$project->image)}});">
-                          <h2 class="text-white position-absolute bottom-0 start-50 translate-middle-x">{{$project->title}}
-                          </h2>
-                      </div>
+                      <x-image-carousel :images="$project->images" :carouselId="$project->id"/> 
                   </a>
+                  <div class="container col-md-6  text-decoration-none" data-aos="fade-up"
+                    data-aos-delay="100">
+                      <h2 class="text-center mb-3">title : {{$project->title}} </h2>
+                      <p >summary : {{$project->summary}} </p>
+                         <a class="text-decoration-none text-dark "  href="/projects/{{$project->id}}" class="text-decoration-none">
+                        more ...
+                      </a>
+                        <x-tags :tagsCsv="$project['tags']" />
+
+                  </div>
                   @endforeach
                 </div>
             </div>
@@ -30,4 +36,5 @@
      </div>
        @endif 
       </div>
+      @include('partials._footer')
     </x-layout>

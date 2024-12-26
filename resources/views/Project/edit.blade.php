@@ -5,11 +5,10 @@
           @csrf
           @method('PUT')
 
-          <div class="row">
-              <div class="col-md-6">
-                  <x-image-uploader :image="$project->image"/>
-              </div>
-              <div class="col-md-6 mt-5">
+       
+             
+                
+  
                   <div class="form-floating mb-3">
                       <input type="text" name="title" value="{{ old('title', $project->title) }}" class="form-control" id="floatingInput">
                       <label for="floatingInput">Title</label>
@@ -26,13 +25,7 @@
                       @enderror
                   </div>
 
-                  <div class="form-floating mb-3">
-                      <input type="text" name="description" value="{{ old('description', $project->description) }}" class="form-control" id="floatingInput">
-                      <label for="floatingInput">Description</label>
-                      @error('description')
-                          <p class="text-danger">{{ $message }}</p>
-                      @enderror
-                  </div>
+                
 
                   <div class="form-floating mb-3">
                       <input type="text" name="tags" value="{{ old('tags', $project->tags) }}" class="form-control" id="floatingInput">
@@ -48,9 +41,10 @@
                           <option value="{{ $projectType->id }}">{{ $projectType->name }}</option>
                       @endforeach
                   </select>
-              </div>
-          </div>
-
+            
+                  <x-text-editor :description="$project->description"/>
+          
+                  <x-multiple-image-uploader :images="$project->images"/>
           <button type="submit" class="btn main-btn-color text-light mt-3 w-100">Update</button>
       </form>
   </div>

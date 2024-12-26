@@ -14,9 +14,18 @@ class ProjectController extends Controller
     {
         return view("Project.index", ['projects' => Project::latest()->filter(request(['tag', 'search']))->paginate(4)]);
     }
-    public function show(Project $Project)
+    public function show(Project $project)
     {
-        return view("Project.show", ['project' => $Project, 'relatedProjects' => Project::latest()->filter(request(['search']))->take(4)->get()]);
+        $relatedProjects = Project::latest()
+            ->filter(request(['search']))
+            ->where('id', '!=', $project->id)  // Exclude the current project
+            ->take(4)
+            ->get();
+
+        return view('Project.show', [
+            'project' => $project,
+            'relatedProjects' => $relatedProjects
+        ]);
     }
 
     public function create()
@@ -35,10 +44,17 @@ class ProjectController extends Controller
         ]);
 
 
-        if ($request->hasFile('image')) {
-            $formFields['image'] = $request->file('image')->store('ProjectImage', 'public');
 
+        if ($request->hasFile('images')) {
+            $images = $request->file('images');
+            foreach ($images as $image) {
+                $imagePath = $image->store('ProjectImage', 'public');
+                $formFields['images'][] = $imagePath;
+            }
+            // Convert the images array to a JSON string
+            $formFields['images'] = json_encode($formFields['images']);
         }
+
 
 
         Project::create($formFields);
@@ -53,7 +69,6 @@ class ProjectController extends Controller
 
     public function update(Request $request, Project $project)
     {
-
         $formFields = $request->validate([
             'title' => 'required',
             'summary' => 'required',
@@ -62,21 +77,31 @@ class ProjectController extends Controller
             'project_type_id' => 'required'
         ]);
 
-        if ($request->hasFile('image')) {
-            if ($project->image && Storage::disk('public')->exists($project->image)) {
-                Storage::disk('public')->delete($project->image);
+        if ($request->hasFile('images')) {
+            // Delete existing images
+            if ($project->images) {
+                $existingImages = json_decode($project->images, true);
+                foreach ($existingImages as $existingImage) {
+                    if (Storage::disk('public')->exists($existingImage)) {
+                        Storage::disk('public')->delete($existingImage);
+                    }
+                }
             }
 
-            $formFields['image'] = $request->file('image')->store('ProjectImage', 'public');
+            $images = $request->file('images');
+            foreach ($images as $image) {
+                $imagePath = $image->store('ProjectImage', 'public');
+                $formFields['images'][] = $imagePath;
+            }
+            // Convert the images array to a JSON string
+            $formFields['images'] = json_encode($formFields['images']);
         } else {
-            $formFields['image'] = $project->image;
+            $formFields['images'] = $project->images;
         }
-
-
 
         $project->update($formFields);
 
-        return redirect('/projects/manage')->with('message', 'Project Updated Successfully!');
+        return redirect('/projects/manage')->with('message', 'Project updated successfully!');
     }
 
     public function manage()
@@ -86,12 +111,22 @@ class ProjectController extends Controller
 
     public function destroy(Project $project)
     {
-        if ($project->image && Storage::disk('public')->exists($project->image)) {
-            Storage::disk('public')->delete($project->image);
+        if ($project->images) {
+            // Decode the JSON string to an array of image paths
+            $images = json_decode($project->images, true);
+
+            // Iterate over each image path and delete the image
+            foreach ($images as $image) {
+                if (Storage::disk('public')->exists($image)) {
+                    Storage::disk('public')->delete($image);
+                }
+            }
         }
+
         $project->delete();
         return redirect('/projects/manage')->with('message', 'Project deleted successfully');
     }
+
 
     private function getProjectType()
     {

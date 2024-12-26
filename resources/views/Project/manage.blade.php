@@ -40,7 +40,9 @@
                     <li class="page-item"> {{$projects->links()}} </li>
                  </div>
                  @else
-                     <p class="my-5 text-center h1">No projects Found</p>
+                     <p class="my-5 text-center h1">No Projects Are Found
+                    <a href="/projects/create" class="nav-link text-success">create one +</a>
+                  </p>
                  @endif
     </x-admin-dashboard>
 </x-layout>

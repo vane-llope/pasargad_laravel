@@ -13,9 +13,9 @@ return new class extends Migration {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('summary');
+            $table->longText('summary');
             $table->longText('description');
-            $table->string('image');
+            $table->json('images');
             $table->string('tags');
             $table->unsignedBigInteger('project_type_id');
             $table->foreign('project_type_id')->references('id')->on('project_types')->onDelete('cascade'); // Update this line

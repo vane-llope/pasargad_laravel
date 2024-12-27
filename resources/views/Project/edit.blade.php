@@ -41,6 +41,9 @@
                           <option value="{{ $projectType->id }}">{{ $projectType->name }}</option>
                       @endforeach
                   </select>
+                  @error('project_type_id')
+                  <p class="text-danger">{{ $message }}</p>
+                   @enderror
             
                   <x-text-editor :description="$project->description"/>
           

@@ -3,11 +3,6 @@
   <div class="container my-5">
     <form method="POST" action="/mines" enctype="multipart/form-data">
         @csrf
-   
-        <div class="row">
-          <div class="col-md-6">
-            <x-image-uploader :image="null"/></div>
-          <div class="col-md-6 my-5">
             
       <div class="form-floating mb-3">
         <input type="text" name="name" value="{{old('name')}}" class="form-control" id="floatingInput" >
@@ -26,16 +21,20 @@
     @enderror
       </div>
 
-      <select name="stone_type_id" class="form-select" aria-label="Default select example">
+      <select name="stone_type_id" class="form-select mb-3" aria-label="Default select example">
         <option selected>Open this select menu</option>
         @foreach ($stoneTypes as $stoneType)
         <option value="{{$stoneType->id}}">{{$stoneType->name}}</option>
         @endforeach
       </select>
+      @error('stone_type_id')
+      <p class="text-danger">{{ $message }}</p>
+       @enderror
+      
+      <x-multiple-image-uploader :images="null" />
 
       <button type="submit" class="btn main-btn-color text-light mt-3 w-100">Submit The Form</button>
-          </div>
-        </div>
+         
      
     </form>
   </div>

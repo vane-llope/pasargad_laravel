@@ -8,10 +8,11 @@
   .img-container {
     position: relative;
     display: inline-block;
+    margin: 5px;
   }
 
   .img-container img {
-    width: 100%;
+    width: 100px; /* Adjust the size as needed */
   }
 
   .img-container .btn-danger {
@@ -21,82 +22,94 @@
   }
 </style>
 
-<div data-role="secure-file-uploader"
-  data-name="images[]" 
-  data-default-photos='@json($imagesArray)' 
-  data-id="images"
-  data-max-size="30000" 
-  data-min-size="50">
+<div id="image-uploader" data-default-photos='@json($imagesArray)'>
+  <label for="image-input" class='btn main-btn-color text-light mb-2'>Upload Images</label>
+  <input type="file" class="d-none" multiple id="image-input" accept="image/*">
+  <div class="w-100 mb-3" id="image-container"></div>
 </div>
+<input type="hidden" id="hidden-existing-images" name="existing_images" value='@json($imagesArray)' />
+<input type="hidden" id="hidden-new-images" name="new_images" value='[]' />
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-$(document).ready(function () {
-  let $element = $('[data-role="secure-file-uploader"]');
-  let $label = $("<label class='btn main-btn-color text-light mb-2'>Upload Images</label>");
-  let $input = $('<input class="d-none" multiple/>');
-  $element.append($label);
+document.addEventListener('DOMContentLoaded', function() {
+  const imageUploader = document.getElementById('image-uploader');
+  const imageInput = document.getElementById('image-input');
+  const imageContainer = document.getElementById('image-container');
+  const hiddenExistingImages = document.getElementById('hidden-existing-images');
+  const hiddenNewImages = document.getElementById('hidden-new-images');
 
-  let $name = $element.data('name');
-  let $id = $element.data('id');
-  let $maxSize = $element.data('maxSize');
-  let $minSize = $element.data('minSize');
-  let $defaultPhotos = $element.data('defaultPhotos');
+  let existingImages = JSON.parse(hiddenExistingImages.value);
+  let newImages = JSON.parse(hiddenNewImages.value);
 
-  $input.attr("type", "file");
-  $input.attr("accept", "image/*");
-  $input.attr("id", $id);
-  $input.attr("name", $name);
-  $input.attr("min-size", $minSize);
-  $input.attr("max-size", $maxSize);
+  console.log('Initial existing images:', existingImages);
+  console.log('Initial new images:', newImages);
 
-  $label.append($input);
-  $element.append($label);
-
-  let $container = $('<div class="w-100 mb-3"></div>');
-  $element.append($container);
-
-  // Display existing images if $defaultPhotos is not null
-  if ($defaultPhotos) {
-    $defaultPhotos.forEach(photo => {
-      let $imgContainer = $('<div class="img-container mb-2"></div>');
-      let $img = $('<img class="w-100"/>');
-      let $removeBtn = $('<button class="btn btn-danger btn-sm">Remove</button>');
-
-      $img.attr('src', '{{ asset('storage') }}'+"/" + photo);
-      $removeBtn.attr('data-photo', photo);
-
-      $imgContainer.append($img).append($removeBtn);
-      $container.append($imgContainer);
+  // Display existing images
+  if (existingImages && existingImages.length > 0) {
+    existingImages.forEach(photo => {
+      console.log('Displaying existing image:', photo);
+      createImageElement("{{ asset('storage') }}/" + photo, photo, true);
     });
   }
 
-  $input.change(function () {
+  // Handle file input change
+  imageInput.addEventListener('change', function() {
     const files = Array.from(this.files);
     files.forEach(file => {
-      if (file && (file.size / 1024 > $minSize) && (file.size / 1024 < $maxSize)) {
+      if (file && file.type.startsWith('image/')) {
         let reader = new FileReader();
-        reader.onload = function (event) {
-          let $imgContainer = $('<div class="img-container mb-2"></div>');
-          let $img = $('<img class="w-100"/>');
-          let $removeBtn = $('<button class="btn btn-danger btn-sm">Remove</button>');
-
-          $img.attr('src', event.target.result);
-          $removeBtn.attr('data-photo', event.target.result);
-
-          $imgContainer.append($img).append($removeBtn);
-          $container.append($imgContainer);
-        }
+        reader.onload = function(event) {
+          console.log('File read:', event.target.result);
+          newImages.push(event.target.result);
+          createImageElement(event.target.result, event.target.result, false);
+          updateHiddenFields();
+        };
         reader.readAsDataURL(file);
       } else {
-        alert("size Error");
+        alert("Only image files are allowed");
       }
     });
   });
 
-  // Remove image
-  $(document).on('click', '.btn-danger', function () {
-    $(this).parent('.img-container').remove();
-  });
+  // Create image element
+  function createImageElement(src, photo, isExisting) {
+    const imgContainer = document.createElement('div');
+    imgContainer.classList.add('img-container', 'mb-2');
+
+    const img = document.createElement('img');
+    img.classList.add('w-100');
+    img.src = src;
+
+    const removeBtn = document.createElement('button');
+    removeBtn.classList.add('btn', 'btn-danger', 'btn-sm');
+    removeBtn.innerText = 'Remove';
+    removeBtn.dataset.photo = photo;
+
+    removeBtn.addEventListener('click', function() {
+      console.log('Removing photo:', photo);
+      if (isExisting) {
+        existingImages = existingImages.filter(img => img !== photo);
+      } else {
+        newImages = newImages.filter(img => img !== photo);
+      }
+      imgContainer.remove();
+      updateHiddenFields();
+    });
+
+    imgContainer.appendChild(img);
+    imgContainer.appendChild(removeBtn);
+    imageContainer.appendChild(imgContainer);
+
+    console.log('Image element created:', imgContainer);
+  }
+
+  // Update hidden input fields
+  function updateHiddenFields() {
+    hiddenExistingImages.value = JSON.stringify(existingImages);
+    hiddenNewImages.value = JSON.stringify(newImages);
+    console.log('Updated existing images:', existingImages);
+    console.log('Updated new images:', newImages);
+  }
 });
 </script>

@@ -69,6 +69,7 @@ class ProjectController extends Controller
 
     public function update(Request $request, Project $project)
     {
+        // Validate the request fields
         $formFields = $request->validate([
             'title' => 'required',
             'summary' => 'required',
@@ -77,28 +78,49 @@ class ProjectController extends Controller
             'project_type_id' => 'required'
         ]);
 
-        if ($request->hasFile('images')) {
-            // Delete existing images
-            if ($project->images) {
-                $existingImages = json_decode($project->images, true);
-                foreach ($existingImages as $existingImage) {
-                    if (Storage::disk('public')->exists($existingImage)) {
-                        Storage::disk('public')->delete($existingImage);
-                    }
-                }
-            }
+        // Ensure the existing_images and new_images are arrays
+        $existingImages = json_decode($request->input('existing_images'), true) ?? [];
+        $newImages = json_decode($request->input('new_images'), true) ?? [];
+        $storedImages = json_decode($project->images, true) ?? [];
 
+        // Initialize formFields['images'] with existing images
+        $formFields['images'] = $existingImages;
+
+        // Handle new image uploads
+        if ($request->hasFile('images')) {
             $images = $request->file('images');
             foreach ($images as $image) {
                 $imagePath = $image->store('ProjectImage', 'public');
                 $formFields['images'][] = $imagePath;
             }
-            // Convert the images array to a JSON string
-            $formFields['images'] = json_encode($formFields['images']);
-        } else {
-            $formFields['images'] = $project->images;
         }
 
+        // Handle new base64 images
+        foreach ($newImages as $newImage) {
+            if (preg_match('/^data:image\/(\w+);base64,/', $newImage, $type)) {
+                $data = substr($newImage, strpos($newImage, ',') + 1);
+                $data = base64_decode($data);
+                $imageName = uniqid() . '.' . $type[1];
+                $imagePath = 'ProjectImage/' . $imageName;
+                Storage::disk('public')->put($imagePath, $data);
+                $formFields['images'][] = $imagePath;
+            }
+        }
+
+        // Convert the images array to a JSON string
+        $formFields['images'] = json_encode($formFields['images']);
+
+        // Find images to remove
+        $imagesToRemove = array_diff($storedImages, $existingImages);
+
+        // Delete removed images from storage
+        foreach ($imagesToRemove as $imageToRemove) {
+            if (Storage::disk('public')->exists($imageToRemove)) {
+                Storage::disk('public')->delete($imageToRemove);
+            }
+        }
+
+        // Update the project with the new form fields
         $project->update($formFields);
 
         return redirect('/projects/manage')->with('message', 'Project updated successfully!');

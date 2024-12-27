@@ -33,7 +33,6 @@ class ProjectTypeController extends Controller
 
     public function update(Request $request, ProjectType $projectType)
     {
-
         $formFields = $request->validate([
             'name' => 'required'
         ]);

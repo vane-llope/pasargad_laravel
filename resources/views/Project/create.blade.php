@@ -30,7 +30,8 @@
         <option value="{{ $projectType->id }}" {{ old('project_type_id') == $projectType->id ? 'selected' : '' }}>
           {{ $projectType->name }}</option> 
           @endforeach
-         </select> @error('project_type_id')
+         </select> 
+         @error('project_type_id')
           <p class="text-danger">{{ $message }}</p>
            @enderror
       

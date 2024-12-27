@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Mine extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'image', 'address', 'stone_type_id'];
+    protected $fillable = ['name', 'images', 'address', 'stone_type_id'];
 
     public function stoneType()
     {

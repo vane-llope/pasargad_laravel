@@ -33,9 +33,14 @@ class MineController extends Controller
         ]);
 
 
-        if ($request->hasFile('image')) {
-            $formFields['image'] = $request->file('image')->store('MineImage', 'public');
-
+        if ($request->hasFile('images')) {
+            $images = $request->file('images');
+            foreach ($images as $image) {
+                $imagePath = $image->store('mineImage', 'public');
+                $formFields['images'][] = $imagePath;
+            }
+            // Convert the images array to a JSON string
+            $formFields['images'] = json_encode($formFields['images']);
         }
 
 
@@ -58,19 +63,27 @@ class MineController extends Controller
             'stone_type_id' => 'required'
         ]);
 
-        if ($request->hasFile('image')) {
-            // Check if there's an old image and delete it
-            if ($mine->image && Storage::disk('public')->exists($mine->image)) {
-                Storage::disk('public')->delete($mine->image);
+        if ($request->hasFile('images')) {
+            // Delete existing images
+            if ($mine->images) {
+                $existingImages = json_decode($mine->images, true);
+                foreach ($existingImages as $existingImage) {
+                    if (Storage::disk('public')->exists($existingImage)) {
+                        Storage::disk('public')->delete($existingImage);
+                    }
+                }
             }
 
-            // Store the new image
-            $formFields['image'] = $request->file('image')->store('MineImage', 'public');
+            $images = $request->file('images');
+            foreach ($images as $image) {
+                $imagePath = $image->store('mineImage', 'public');
+                $formFields['images'][] = $imagePath;
+            }
+            // Convert the images array to a JSON string
+            $formFields['images'] = json_encode($formFields['images']);
         } else {
-            // If no new image is provided, retain the old image path
-            $formFields['image'] = $mine->image;
+            $formFields['images'] = $mine->images;
         }
-
 
 
         $mine->update($formFields);

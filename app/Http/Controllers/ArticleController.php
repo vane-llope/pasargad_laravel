@@ -138,8 +138,16 @@ class ArticleController extends Controller
 
     public function destroy(Article $article)
     {
-        if ($article->image && Storage::disk('public')->exists($article->image)) {
-            Storage::disk('public')->delete($article->image);
+        if ($article->images) {
+            // Decode the JSON string to an array of image paths
+            $images = json_decode($article->images, true);
+
+            // Iterate over each image path and delete the image
+            foreach ($images as $image) {
+                if (Storage::disk('public')->exists($image)) {
+                    Storage::disk('public')->delete($image);
+                }
+            }
         }
         $article->delete();
         return redirect('/articles/manage')->with('message', 'article deleted successfully');

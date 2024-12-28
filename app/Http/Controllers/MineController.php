@@ -33,15 +33,24 @@ class MineController extends Controller
         ]);
 
 
-        if ($request->hasFile('images')) {
-            $images = $request->file('images');
-            foreach ($images as $image) {
-                $imagePath = $image->store('mineImage', 'public');
+        // Initialize 'images' field as an empty array
+        $formFields['images'] = [];
+
+        // Handle new base64 images
+        $newImages = json_decode($request->input('new_images'), true) ?? [];
+        foreach ($newImages as $newImage) {
+            if (preg_match('/^data:image\/(\w+);base64,/', $newImage, $type)) {
+                $data = substr($newImage, strpos($newImage, ',') + 1);
+                $data = base64_decode($data);
+                $imageName = uniqid() . '.' . $type[1];
+                $imagePath = 'ProjectImage/' . $imageName;
+                Storage::disk('public')->put($imagePath, $data);
                 $formFields['images'][] = $imagePath;
             }
-            // Convert the images array to a JSON string
-            $formFields['images'] = json_encode($formFields['images']);
         }
+
+        // Convert the images array to a JSON string
+        $formFields['images'] = json_encode($formFields['images']);
 
 
         Mine::create($formFields);
@@ -63,26 +72,47 @@ class MineController extends Controller
             'stone_type_id' => 'required'
         ]);
 
-        if ($request->hasFile('images')) {
-            // Delete existing images
-            if ($mine->images) {
-                $existingImages = json_decode($mine->images, true);
-                foreach ($existingImages as $existingImage) {
-                    if (Storage::disk('public')->exists($existingImage)) {
-                        Storage::disk('public')->delete($existingImage);
-                    }
-                }
-            }
 
+        // Ensure the existing_images and new_images are arrays
+        $existingImages = json_decode($request->input('existing_images'), true) ?? [];
+        $newImages = json_decode($request->input('new_images'), true) ?? [];
+        $storedImages = json_decode($mine->images, true) ?? [];
+
+        // Initialize formFields['images'] with existing images
+        $formFields['images'] = $existingImages;
+
+        // Handle new image uploads
+        if ($request->hasFile('images')) {
             $images = $request->file('images');
             foreach ($images as $image) {
-                $imagePath = $image->store('mineImage', 'public');
+                $imagePath = $image->store('ProjectImage', 'public');
                 $formFields['images'][] = $imagePath;
             }
-            // Convert the images array to a JSON string
-            $formFields['images'] = json_encode($formFields['images']);
-        } else {
-            $formFields['images'] = $mine->images;
+        }
+
+        // Handle new base64 images
+        foreach ($newImages as $newImage) {
+            if (preg_match('/^data:image\/(\w+);base64,/', $newImage, $type)) {
+                $data = substr($newImage, strpos($newImage, ',') + 1);
+                $data = base64_decode($data);
+                $imageName = uniqid() . '.' . $type[1];
+                $imagePath = 'ProjectImage/' . $imageName;
+                Storage::disk('public')->put($imagePath, $data);
+                $formFields['images'][] = $imagePath;
+            }
+        }
+
+        // Convert the images array to a JSON string
+        $formFields['images'] = json_encode($formFields['images']);
+
+        // Find images to remove
+        $imagesToRemove = array_diff($storedImages, $existingImages);
+
+        // Delete removed images from storage
+        foreach ($imagesToRemove as $imageToRemove) {
+            if (Storage::disk('public')->exists($imageToRemove)) {
+                Storage::disk('public')->delete($imageToRemove);
+            }
         }
 
 
@@ -98,9 +128,18 @@ class MineController extends Controller
 
     public function destroy(Mine $mine)
     {
-        if ($mine->image && Storage::disk('public')->exists($mine->image)) {
-            Storage::disk('public')->delete($mine->image);
+        if ($mine->images) {
+            // Decode the JSON string to an array of image paths
+            $images = json_decode($mine->images, true);
+
+            // Iterate over each image path and delete the image
+            foreach ($images as $image) {
+                if (Storage::disk('public')->exists($image)) {
+                    Storage::disk('public')->delete($image);
+                }
+            }
         }
+
         $mine->delete();
         return redirect('/mines/manage')->with('message', 'Mine deleted successfully');
     }

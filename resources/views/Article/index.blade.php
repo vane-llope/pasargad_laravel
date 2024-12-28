@@ -25,4 +25,5 @@
      </div>
        @endif 
       </div>
+      @include('partials._footer')
     </x-layout>

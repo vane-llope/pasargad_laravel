@@ -21,11 +21,11 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
         // Stone::factory(10)->create();
-        StoneType::factory(4)->create();
-        Article::factory(10)->create();
+        // StoneType::factory(4)->create();
+        // Article::factory(10)->create();
         // Mine::factory(10)->create();
         // Project::factory(10)->create();
-        ProjectType::factory(2)->create();
+        // ProjectType::factory(2)->create();
         User::factory()->create([
             'name' => 'Zahra',
             'email' => 'zahraaa.syi@gmail.com',

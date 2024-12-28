@@ -5,7 +5,7 @@
           @include('partials._search')
           <div class="row my-5">
                <div class="col-8">
-                    <img class="w-100" src="{{asset('storage/'.$mine->image)}}" alt="" srcset="">
+                    <x-image-carousel :images="$mine->images" :carouselId="$mine->id"/> 
                     <h2>{{$mine->stoneType->name}}</h2>
                <h1 >{{$mine['name']}}</h1>
                <h4 >{{$mine['address']}}</h4>
@@ -13,7 +13,7 @@
                <div class="col-md-4">
                     @if(count($relatedMines)!=0) 
                    @foreach ($relatedMines as $relatedMine)
-                     <img class="w-100" src="{{asset('storage/'.$relatedMine->image)}}" alt="" srcset="">
+                   <x-image-carousel :images="$relatedMine->images" :carouselId="$relatedMine->id"/> 
                      <a class="h5 nav-link fw-bold text-dark" href="/articles/{{$relatedMine->id}}">{{$relatedMine->name}}</a>
                      <p>{{$relatedMine->address}}</p>
                    <hr>
@@ -23,4 +23,5 @@
           </div>
             
           </div>
+          @include('partials._footer')
     </x-layout>

@@ -14,9 +14,20 @@ class MineController extends Controller
     {
         return view("Mine.index", ['mines' => Mine::latest()->filter(request(['tag', 'search']))->paginate(4)]);
     }
+
+
     public function show(Mine $mine)
     {
-        return view("Mine.show", ['mine' => $mine, 'relatedMines' => Mine::latest()->filter(request(['tag', 'search']))->take(4)->get()]);
+        $relatedMines = Mine::latest()
+            ->filter(request(['tag', 'search']))
+            ->where('id', '!=', $mine->id)  // Exclude the current mine
+            ->take(4)
+            ->get();
+
+        return view('mine.show', [
+            'mine' => $mine,
+            'relatedMines' => $relatedMines
+        ]);
     }
 
     public function create()

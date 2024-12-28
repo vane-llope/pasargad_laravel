@@ -18,7 +18,7 @@ class MineFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'image' => fake()->sentence(),
+            'images' => fake()->sentence(),
             'address' => fake()->address()
         ];
     }

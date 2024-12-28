@@ -18,7 +18,7 @@ class ProjectFactory extends Factory
     {
         return [
             'title' => fake()->sentence(),
-            'image' => fake()->sentence(),
+            'images' => fake()->sentence(),
             'summary' => fake()->text(),
             'description' => fake()->paragraph(),
             'tags' => '#laravel#bootstrap#vue#react'

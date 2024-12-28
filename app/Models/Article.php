@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Article extends Model
 {
     use HasFactory;
-    protected $fillable = ['image', 'title', 'summary', 'content', 'tags'];
+    protected $fillable = ['images', 'title', 'summary', 'description', 'tags'];
     public function scopeFilter($quary, array $filters)
     {
         if ($filters['tag'] ?? false) {

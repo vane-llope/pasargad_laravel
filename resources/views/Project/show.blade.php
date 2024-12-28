@@ -9,7 +9,6 @@
                   
                     <h1 class="my-4">{{ $project['title'] }}</h1>
                     <h4>{{ $project['summary'] }}</h4>
-                    {{-- <p>{{ $project['description'] }}</p> --}}
                     <p>{!! $project['description'] !!}</p>
                     <x-tags :tagsCsv="$project['tags']" />
                </div>

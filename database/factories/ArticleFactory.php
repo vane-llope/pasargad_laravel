@@ -18,9 +18,9 @@ class ArticleFactory extends Factory
     {
         return [
             'title' => fake()->sentence(),
-            'image' => fake()->sentence(),
+            'images' => fake()->sentence(),
             'summary' => fake()->text(),
-            'content' => fake()->paragraph(),
+            'description' => fake()->paragraph(),
             'tags' => '#laravel#bootstrap#vue#react'
         ];
     }

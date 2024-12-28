@@ -43,19 +43,24 @@ class ProjectController extends Controller
             'project_type_id' => 'required'
         ]);
 
+        // Initialize 'images' field as an empty array
+        $formFields['images'] = [];
 
-
-        if ($request->hasFile('images')) {
-            $images = $request->file('images');
-            foreach ($images as $image) {
-                $imagePath = $image->store('ProjectImage', 'public');
+        // Handle new base64 images
+        $newImages = json_decode($request->input('new_images'), true) ?? [];
+        foreach ($newImages as $newImage) {
+            if (preg_match('/^data:image\/(\w+);base64,/', $newImage, $type)) {
+                $data = substr($newImage, strpos($newImage, ',') + 1);
+                $data = base64_decode($data);
+                $imageName = uniqid() . '.' . $type[1];
+                $imagePath = 'ProjectImage/' . $imageName;
+                Storage::disk('public')->put($imagePath, $data);
                 $formFields['images'][] = $imagePath;
             }
-            // Convert the images array to a JSON string
-            $formFields['images'] = json_encode($formFields['images']);
         }
 
-
+        // Convert the images array to a JSON string
+        $formFields['images'] = json_encode($formFields['images']);
 
         Project::create($formFields);
 

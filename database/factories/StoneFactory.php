@@ -19,7 +19,7 @@ class StoneFactory extends Factory
         return [
             'code' => fake()->numberBetween(0, 100),
             'name' => fake()->name(),
-            'image' => fake()->sentence(),
+            'images' => fake()->sentence(),
             'Tensile_Strength' => fake()->name(),
             'Water_Absorption_Rate' => fake()->name(),
             'Compressive_Strength' => fake()->name(),

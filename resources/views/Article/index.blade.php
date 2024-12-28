@@ -10,7 +10,7 @@
         @foreach ($articles as $article)
         <div class="row my-5">
         <div class="col-md-6">
-          <img class="w-100" src="{{asset('storage/'.$article->image)}}" alt="" srcset="">
+          <x-image-carousel :images="$article->images" :carouselId="$article->id"/> 
         </div>
         <div class="col-md-6">
           <a class="h1 nav-link" href="/articles/{{$article->id}}">{{$article->title}}</a>

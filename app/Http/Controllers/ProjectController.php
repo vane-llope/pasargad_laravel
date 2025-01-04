@@ -36,9 +36,12 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $formFields = $request->validate([
-            'title' => 'required',
-            'summary' => 'required',
-            'description' => 'required',
+            'title_fa' => 'required',
+            'title_en' => 'required',
+            'summary_fa' => 'required',
+            'summary_en' => 'required',
+            'description_fa' => 'required',
+            'description_en' => 'required',
             'tags' => 'required',
             'project_type_id' => 'required'
         ]);
@@ -76,9 +79,12 @@ class ProjectController extends Controller
     {
         // Validate the request fields
         $formFields = $request->validate([
-            'title' => 'required',
-            'summary' => 'required',
-            'description' => 'required',
+            'title_fa' => 'required',
+            'title_en' => 'required',
+            'summary_fa' => 'required',
+            'summary_en' => 'required',
+            'description_fa' => 'required',
+            'description_en' => 'required',
             'tags' => 'required',
             'project_type_id' => 'required'
         ]);

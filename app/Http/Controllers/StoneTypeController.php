@@ -15,9 +15,9 @@ class StoneTypeController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->file('image'));
         $formFields = $request->validate([
-            'name' => 'required'
+            'name_fa' => 'required',
+            'name_en' => 'required'
         ]);
 
 
@@ -35,7 +35,8 @@ class StoneTypeController extends Controller
     {
 
         $formFields = $request->validate([
-            'name' => 'required'
+            'name_fa' => 'required',
+            'name_en' => 'required'
         ]);
 
         $stoneType->update($formFields);

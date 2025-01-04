@@ -5,7 +5,7 @@
      <div class="container">
   @include('partials._search')
          @if(count($stones)==0) 
-         <p>No stone</p>
+         <p>{{__('messages.notFound')}}</p>
        @else
        <section>
         <div class="my-5">
@@ -20,7 +20,7 @@
                       data-aos-delay="100">
                       <div class=" service-item d-flex justify-content-around p-5 flex-column position-relative align-items-center"
                           style="height:50vh; background-image: url({{asset('storage/'.$stone->image)}});">
-                          <h2 class="text-white position-absolute bottom-0 start-50 translate-middle-x">{{$stone->name}}
+                          <h2 class="text-white position-absolute bottom-0 start-50 translate-middle-x">{{ $stone['name_' . app()->getLocale()] }}
                           </h2>
                       </div>
                   </a>

@@ -17,7 +17,8 @@ class ProjectTypeController extends Controller
     {
         // dd($request->file('image'));
         $formFields = $request->validate([
-            'name' => 'required'
+            'name_fa' => 'required',
+            'name_en' => 'required'
         ]);
 
 
@@ -34,7 +35,8 @@ class ProjectTypeController extends Controller
     public function update(Request $request, ProjectType $projectType)
     {
         $formFields = $request->validate([
-            'name' => 'required'
+            'name_fa' => 'required',
+            'name_en' => 'required'
         ]);
 
         $projectType->update($formFields);

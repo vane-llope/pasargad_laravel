@@ -1,52 +1,94 @@
 <x-layout>
     <x-admin-dashboard>
-  <div class="container my-5">
-    @include('partials._setLanguage')
-      <form method="POST" action="/projects/{{$project->id}}" enctype="multipart/form-data">
-          @csrf
-          @method('PUT')
-
-                  <div class="form-floating mb-3">
-                      <input type="text" name="title" value="{{ old('title', $project->title) }}" class="form-control" id="floatingInput">
-                      <label for="floatingInput">Title</label>
-                      @error('title')
-                          <p class="text-danger">{{ $message }}</p>
-                      @enderror
+      <div class="container">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex justify-content-center mt-2" style="direction: rtl;">
+              <a href="#myCarousel" class="nav-link text-dark fw-bold" role="button" data-bs-slide-to="0" onclick="setDirectionTemperary('rtl')">فارسی</a>
+              <a href="#myCarousel" class="nav-link text-dark fw-bold" role="button" data-bs-slide-to="1" onclick="setDirectionTemperary('ltr')">English</a>
+            </div>
+  
+            <div id="myCarousel" class="carousel slide bg-transparent" data-bs-ride="carousel" data-bs-interval="false">
+              <div class="carousel-inner">
+                <div class="carousel-item active bg-transparent" id="farsi-page">
+                  <div class="container bg-transparent">
+                    <!-- Page 1 content here (Farsi Input) -->
+  
+                    <form method="POST" action="/projects/{{$project->id}}" enctype="multipart/form-data">
+                      @csrf
+                      @method('PUT')
+  
+                      <div class="form-floating mb-3">
+                        <input type="text" name="title_fa" value="{{ old('title_fa', $project->title_fa) }}" class="form-control" id="floatingInput">
+                        <label for="floatingInput">عنوان</label>
+                        @error('title_fa')
+                        <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                      </div>
+                      <div class="form-floating mb-3">
+                        <input type="text" name="summary_fa" value="{{ old('summary_fa', $project->summary_fa) }}" class="form-control" id="floatingInput">
+                        <label for="floatingInput">خلاصه</label>
+                        @error('summary_fa')
+                        <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                      </div>
+                      <x-text-editor :description="$project->description_fa" :inputName="'description_fa'" />
                   </div>
-
-                  <div class="form-floating mb-3">
-                      <input type="text" name="summary" value="{{ old('summary', $project->summary) }}" class="form-control" id="floatingInput">
-                      <label for="floatingInput">Summary</label>
-                      @error('summary')
-                          <p class="text-danger">{{ $message }}</p>
-                      @enderror
+                </div>
+                <div class="carousel-item bg-transparent" id="english-page">
+                  <div class="container bg-transparent">
+                    <!-- Page 2 content here (English Input) -->
+                      @csrf
+                      @method('PUT')
+                      
+                      <div class="form-floating mb-3">
+                        <input type="text" name="title_en" value="{{ old('title_en', $project->title_en) }}" class="form-control" id="floatingInput">
+                        <label for="floatingInput">title</label>
+                        @error('title_en')
+                        <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                      </div>
+                      <div class="form-floating mb-3">
+                        <input type="text" name="summary_en" value="{{ old('summary_en', $project->summary_en) }}" class="form-control" id="floatingInput">
+                        <label for="floatingInput">summary</label>
+                        @error('summary_en')
+                        <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                      </div>
+  
+                      <x-text-editor :description="$project->description_en" :inputName="'description_en'" />
                   </div>
-
-                
-
-                  <div class="form-floating mb-3">
-                      <input type="text" name="tags" value="{{ old('tags', $project->tags) }}" class="form-control" id="floatingInput">
-                      <label for="floatingInput">Tags</label>
-                      @error('tags')
-                          <p class="text-danger">{{ $message }}</p>
-                      @enderror
-                  </div>
-
-                  <select name="project_type_id" class="form-select my-3" aria-label="Default select example">
-                      <option selected value="{{ $project->projectType->id }}">{{ $project->projectType->name }}</option>
-                      @foreach ($projectTypes as $projectType)
-                          <option value="{{ $projectType->id }}">{{ $projectType->name }}</option>
-                      @endforeach
-                  </select>
-                  @error('project_type_id')
-                  <p class="text-danger">{{ $message }}</p>
-                   @enderror
-            
-                  <x-text-editor :description="$project->description"/>
-          
-                  <x-multiple-image-uploader :images="$project->images"/>
-          <button type="submit" class="btn main-btn-color text-light mt-3 w-100">Update</button>
-      </form>
-  </div>
+                </div>
+              </div>
+            </div>
+  
+            <div class="container">
+              <div class="form-floating mb-3">
+                <input type="text" name="tags" value="{{ old('tags', $project->tags) }}" class="form-control" id="floatingInput">
+                <label for="floatingInput">tags</label>
+                @error('tags')
+                <p class="text-danger">{{ $message }}</p>
+                @enderror
+              </div>
+              <select name="project_type_id" class="form-select my-3" aria-label="Default select example">
+                <option selected value="{{ $project->projectType->id }}">{{ $project->projectType->name }}</option>
+                @foreach ($projectTypes as $projectType)
+                <option value="{{ $projectType->id }}" {{ old('project_type_id', $project->project_type_id) == $projectType->id ? 'selected' : '' }}>
+                  {{ $projectType['name_'. app()->getLocale()] }} </option>
+                @endforeach
+              </select>
+              @error('project_type_id')
+              <p class="text-danger">{{ $message }}</p>
+              @enderror
+  
+              <x-multiple-image-uploader :images="$project->images" />
+            </div>
+  
+            <button type="submit" class="btn main-btn-color text-light mt-3 w-100">{{__('messages.submit')}}</button>
+          </form>
+          </div>
+        </div>
+      </div>
     </x-admin-dashboard>
-</x-layout>
+  </x-layout>
+  

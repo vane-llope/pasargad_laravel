@@ -1,99 +1,182 @@
 <x-layout>
     <x-admin-dashboard>
-  <div class="container my-5">
-    @include('partials._setLanguage')
-      <form method="POST" action="/stones/{{ $stone->id }}" enctype="multipart/form-data">
+      <div class="container">
+        <div class="card">
+            <div class="card-body bg-light">
+        <form method="POST" action="/stones/{{ $stone->id }}" enctype="multipart/form-data">
           @csrf
           @method('PUT')
-
-          <div class="row">
-              <div class="col-md-6">
-                  <x-image-uploader :image="$stone->image"/>
-              </div>
-              <div class="col-md-6 mt-5">
-                  <div class="form-floating mb-3">
-                      <input type="text" name="code" value="{{ old('code', $stone->code) }}" class="form-control" id="floatingInput">
-                      <label for="floatingInput">Code</label>
-                      @error('code')
-                          <p class="text-danger">{{ $message }}</p>
-                      @enderror
-                  </div>
-
-                  <div class="form-floating mb-3">
-                      <input type="text" name="name" value="{{ old('name', $stone->name) }}" class="form-control" id="floatingInput">
-                      <label for="floatingInput">Name</label>
-                      @error('name')
-                          <p class="text-danger">{{ $message }}</p>
-                      @enderror
-                  </div>
-
-                  <div class="form-floating mb-3">
-                      <input type="text" name="Tensile_Strength" value="{{ old('Tensile_Strength', $stone->Tensile_Strength) }}" class="form-control" id="floatingInput">
-                      <label for="floatingInput">Tensile Strength</label>
-                      @error('Tensile_Strength')
-                          <p class="text-danger">{{ $message }}</p>
-                      @enderror
-                  </div>
-
-                  <div class="form-floating mb-3">
-                      <input type="text" name="Water_Absorption_Rate" value="{{ old('Water_Absorption_Rate', $stone->Water_Absorption_Rate) }}" class="form-control" id="floatingInput">
-                      <label for="floatingInput">Water Absorption Rate</label>
-                      @error('Water_Absorption_Rate')
-                          <p class="text-danger">{{ $message }}</p>
-                      @enderror
-                  </div>
-
-                  <div class="form-floating mb-3">
-                      <input type="text" name="Compressive_Strength" value="{{ old('Compressive_Strength', $stone->Compressive_Strength) }}" class="form-control" id="floatingInput">
-                      <label for="floatingInput">Compressive Strength</label>
-                      @error('Compressive_Strength')
-                          <p class="text-danger">{{ $message }}</p>
-                      @enderror
-                  </div>
-
-                  <div class="form-floating mb-3">
-                      <input type="text" name="Abrasion_Resistance" value="{{ old('Abrasion_Resistance', $stone->Abrasion_Resistance) }}" class="form-control" id="floatingInput">
-                      <label for="floatingInput">Abrasion Resistance</label>
-                      @error('Abrasion_Resistance')
-                          <p class="text-danger">{{ $message }}</p>
-                      @enderror
-                  </div>
-
-                  <div class="form-floating mb-3">
-                      <input type="text" name="Specific_Weight" value="{{ old('Specific_Weight', $stone->Specific_Weight) }}" class="form-control" id="floatingInput">
-                      <label for="floatingInput">Specific Weight</label>
-                      @error('Specific_Weight')
-                          <p class="text-danger">{{ $message }}</p>
-                      @enderror
-                  </div>
-
-                  <div class="form-floating mb-3">
-                      <input type="text" name="Failure_Mode" value="{{ old('Failure_Mode', $stone->Failure_Mode) }}" class="form-control" id="floatingInput">
-                      <label for="floatingInput">Failure Mode</label>
-                      @error('Failure_Mode')
-                          <p class="text-danger">{{ $message }}</p>
-                      @enderror
-                  </div>
-
-                  <div class="form-floating mb-3">
-                      <input type="text" name="Porosity" value="{{ old('Porosity', $stone->Porosity) }}" class="form-control" id="floatingInput">
-                      <label for="floatingInput">Porosity</label>
-                      @error('Porosity')
-                          <p class="text-danger">{{ $message }}</p>
-                      @enderror
-                  </div>
-
-                  <select name="stone_type_id" class="form-select my-3" aria-label="Default select example">
-                      <option selected value="{{ $stone->stoneType->id }}">{{ $stone->stoneType->name }}</option>
-                      @foreach ($stoneTypes as $stoneType)
-                          <option value="{{ $stoneType->id }}">{{ $stoneType->name }}</option>
-                      @endforeach
-                  </select>
-              </div>
+  
+          <div class="d-flex justify-content-center mt-2" style="direction: rtl;">
+            <a href="#stoneCarousel" class="nav-link text-dark fw-bold" role="button" data-bs-slide-to="0" onclick="setDirectionTemperary('rtl')">فارسی</a>
+            <a href="#stoneCarousel" class="nav-link text-dark fw-bold" role="button" data-bs-slide-to="1" onclick="setDirectionTemperary('ltr')">English</a>
           </div>
-
-          <button type="submit" class="btn main-btn-color text-light mt-3 w-100">Update</button>
-      </form>
-  </div>
+  
+          <div id="stoneCarousel" class="carousel slide bg-transparent" data-bs-ride="carousel" data-bs-interval="false">
+            <div class="carousel-inner">
+              <!-- Farsi Page -->
+              <div class="carousel-item active bg-transparent" id="farsi-page">
+                <div class="container bg-transparent">
+                  <div class="form-floating mb-3">
+                    <input type="text" name="name_fa" value="{{ $stone->name_fa }}" class="form-control" id="floatingInput">
+                    <label for="floatingInput">نام</label>
+                    @error('name_fa')
+                      <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                  </div>
+  
+                  <div class="form-floating mb-3">
+                    <input type="text" name="tensile_strength_fa" value="{{ $stone->tensile_strength_fa }}" class="form-control" id="floatingInput">
+                    <label for="floatingInput">استحکام کششی</label>
+                    @error('tensile_strength_fa')
+                      <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                  </div>
+  
+                  <div class="form-floating mb-3">
+                    <input type="text" name="water_absorption_rate_fa" value="{{ $stone->water_absorption_rate_fa }}" class="form-control" id="floatingInput">
+                    <label for="floatingInput">نرخ جذب آب</label>
+                    @error('water_absorption_rate_fa')
+                      <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                  </div>
+  
+                  <div class="form-floating mb-3">
+                    <input type="text" name="compressive_strength_fa" value="{{ $stone->compressive_strength_fa }}" class="form-control" id="floatingInput">
+                    <label for="floatingInput">استحکام فشاری</label>
+                    @error('compressive_strength_fa')
+                      <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                  </div>
+  
+                  <div class="form-floating mb-3">
+                    <input type="text" name="abrasion_resistance_fa" value="{{ $stone->abrasion_resistance_fa }}" class="form-control" id="floatingInput">
+                    <label for="floatingInput">مقاومت در برابر سایش</label>
+                    @error('abrasion_resistance_fa')
+                      <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                  </div>
+  
+                  <div class="form-floating mb-3">
+                    <input type="text" name="specific_weight_fa" value="{{ $stone->specific_weight_fa }}" class="form-control" id="floatingInput">
+                    <label for="floatingInput">وزن مخصوص</label>
+                    @error('specific_weight_fa')
+                      <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                  </div>
+  
+                  <div class="form-floating mb-3">
+                    <input type="text" name="failure_mode_fa" value="{{ $stone->failure_mode_fa }}" class="form-control" id="floatingInput">
+                    <label for="floatingInput">حالت شکست</label>
+                    @error('failure_mode_fa')
+                      <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                  </div>
+  
+                  <div class="form-floating mb-3">
+                    <input type="text" name="porosity_fa" value="{{ $stone->porosity_fa }}" class="form-control" id="floatingInput">
+                    <label for="floatingInput">تخلخل</label>
+                    @error('porosity_fa')
+                      <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                  </div>
+                </div>
+              </div>
+  
+              <!-- English Page -->
+              <div class="carousel-item bg-transparent" id="english-page">
+                <div class="container bg-transparent">
+                  <div class="form-floating mb-3">
+                    <input type="text" name="name_en" value="{{ $stone->name_en }}" class="form-control" id="floatingInput">
+                    <label for="floatingInput">Name</label>
+                    @error('name_en')
+                      <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                  </div>
+  
+                  <div class="form-floating mb-3">
+                    <input type="text" name="tensile_strength_en" value="{{ $stone->tensile_strength_en }}" class="form-control" id="floatingInput">
+                    <label for="floatingInput">Tensile Strength</label>
+                    @error('tensile_strength_en')
+                      <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                  </div>
+  
+                  <div class="form-floating mb-3">
+                    <input type="text" name="water_absorption_rate_en" value="{{ $stone->water_absorption_rate_en }}" class="form-control" id="floatingInput">
+                    <label for="floatingInput">Water Absorption Rate</label>
+                    @error('water_absorption_rate_en')
+                      <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                  </div>
+  
+                  <div class="form-floating mb-3">
+                    <input type="text" name="compressive_strength_en" value="{{ $stone->compressive_strength_en }}" class="form-control" id="floatingInput">
+                    <label for="floatingInput">Compressive Strength</label>
+                    @error('compressive_strength_en')
+                      <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                  </div>
+  
+                  <div class="form-floating mb-3">
+                    <input type="text" name="abrasion_resistance_en" value="{{ $stone->abrasion_resistance_en }}" class="form-control" id="floatingInput">
+                    <label for="floatingInput">Abrasion Resistance</label>
+                    @error('abrasion_resistance_en')
+                      <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                  </div>
+  
+                  <div class="form-floating mb-3">
+                    <input type="text" name="specific_weight_en" value="{{ $stone->specific_weight_en }}" class="form-control" id="floatingInput">
+                    <label for="floatingInput">Specific Weight</label>
+                    @error('specific_weight_en')
+                      <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                  </div>
+  
+                  <div class="form-floating mb-3">
+                    <input type="text" name="failure_mode_en" value="{{ $stone->failure_mode_en }}" class="form-control" id="floatingInput">
+                    <label for="floatingInput">Failure Mode</label>
+                    @error('failure_mode_en')
+                      <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                  </div>
+  
+                  <div class="form-floating mb-3">
+                    <input type="text" name="porosity_en" value="{{ $stone->porosity_en }}" class="form-control" id="floatingInput">
+                    <label for="floatingInput">Porosity</label>
+                    @error('porosity_en')
+                      <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <select name="stone_type_id" class="form-select my-3" aria-label="Default select example">
+            @foreach ($stoneTypes as $stoneType)
+              <option value="{{ $stoneType->id }}" {{ $stoneType->id == $stone->stone_type_id ? 'selected' : '' }}>
+                {{ $stoneType['name_'. app()->getLocale()] }}
+              </option>
+            @endforeach
+          </select>
+  
+          <div class="form-floating mb-3">
+            <input type="text" name="code" value="{{ $stone->code }}" class="form-control" id="floatingInput">
+            <label for="floatingInput">code</label>
+            @error('code')
+              <p class="text-danger">{{ $message }}</p>
+            @enderror
+          </div>
+          
+          <x-image-uploader :image="$stone->image" />
+  
+          <button type="submit" class="btn main-btn-color text-light mt-3 w-100">{{ __('messages.submit') }}</button>
+        </form>
+      </div>
+        </div>
+      </div>
     </x-admin-dashboard>
-</x-layout>
+  </x-layout>
+  

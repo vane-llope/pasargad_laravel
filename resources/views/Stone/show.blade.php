@@ -13,30 +13,36 @@
                  <div class="table-responsive">
                    <table class="table text-center">
                      <thead >
-                       <th class="text-end">نام</th>
-                       <th>کد</th>
-                       <th>نوع</th>
-                       <th>مقاومت کششی</th>
-                       <th> میزان جذب آب</th>
-                       <th>مقاومت فشاری</th>
-                       <th>مقاومت سایشی</th>
-                       <th>وزن مخصوص</th>
-                       <th>مدل گسیختگی</th>
-                       <th>تخلخل</th>
+                      <th class="text-end">{{ __('messages.name') }}</th>
+                      <th>{{ __('messages.code') }}</th>
+<th>{{ __('messages.tensile_strength') }}</th>
+
+<th>{{ __('messages.type') }}</th>
+<th>{{ __('messages.water_absorption_rate') }}</th>
+<th>{{ __('messages.compressive_strength') }}</th>
+<th>{{ __('messages.abrasion_resistance') }}</th>
+<th>{{ __('messages.specific_weight') }}</th>
+<th>{{ __('messages.failure_mode') }}</th>
+<th>{{ __('messages.porosity') }}</th>
+
+
+                       
                      </thead>
                      <tbody>
                         
                          <tr  >
-                             <td class="text-end">{{$stone['name']}}</td>
-                             <td >{{$stone['code']}}</td>
-                             <td >{{$stone->stoneType->name}}</td>
-                             <td >{{$stone['Tensile_Strength']}}</td>
-                             <td >{{$stone['Water_Absorption_Rate']}}</td>
-                             <td >{{$stone['Compressive_Strength']}}</td>
-                             <td >{{$stone['Abrasion_Resistance']}}</td>
-                             <td >{{$stone['Specific_Weight']}}</td>
-                             <td >{{$stone['Failure_Mode']}}</td>
-                             <td >{{$stone['Porosity']}}</td>
+                          <td class="text-end">{{ $stone['name_' . app()->getLocale()] }}</td>
+                          <td>{{ $stone['code'] }}</td>
+                          <td>{{ $stone->stoneType->name . '_' . app()->getLocale() }}</td>
+                          <td>{{ $stone['tensile_strength_' . app()->getLocale()] }}</td>
+                          <td>{{ $stone['water_absorption_rate_' . app()->getLocale()] }}</td>
+                          <td>{{ $stone['compressive_strength_' . app()->getLocale()] }}</td>
+                          <td>{{ $stone['abrasion_resistance_' . app()->getLocale()] }}</td>
+                          <td>{{ $stone['specific_weight_' . app()->getLocale()] }}</td>
+                          <td>{{ $stone['failure_mode_' . app()->getLocale()] }}</td>
+                          <td>{{ $stone['porosity_' . app()->getLocale()] }}</td>
+                          
+                          
                          </tr>
                      </tbody>
                    </table>
@@ -48,15 +54,7 @@
                     <img class="w-100" src="{{asset('storage/'.$stone->image)}}" alt="" srcset="">
                 
                </div>
-               <div class="col-md-4">
-                    @if(count($relatedStones)!=0) 
-                   @foreach ($relatedStones as $relatedStone)
-                     <img class="w-100" src="{{asset('storage/'.$relatedStone->image)}}" alt="" srcset="">
-                     <a class="h5 nav-link fw-bold text-dark" href="/articles/{{$relatedStone->id}}">{{$relatedStone->code}} _ {{$relatedStone->name}}</a>
-                   <hr>
-                   @endforeach
-                  @endif 
-               </div>
+             
           </div>
            
           </div>

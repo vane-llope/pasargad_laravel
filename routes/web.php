@@ -2,9 +2,9 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\MineController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectTypeController;
+use App\Http\Controllers\QuarryController;
 use App\Http\Controllers\StoneController;
 use App\Http\Controllers\StoneTypeController;
 use App\Http\Controllers\UserController;
@@ -53,15 +53,15 @@ Route::get('/stoneTypes/{stoneType}/edit', [StoneTypeController::class, 'edit'])
 Route::put('/stoneTypes/{stoneType}', [StoneTypeController::class, 'update'])->middleware('auth');
 Route::delete('/stoneTypes/{stoneType}', [StoneTypeController::class, 'destroy'])->middleware('auth');
 
-//mines
-Route::get('/mines', [MineController::class, 'index']);
-Route::get('/mines/create', [MineController::class, 'create'])->middleware('auth');
-Route::get('/mines/manage', [MineController::class, 'manage'])->middleware('auth');
-Route::post('/mines', [MineController::class, 'store'])->middleware('auth');
-Route::get('/mines/{mine}/edit', [MineController::class, 'edit'])->middleware('auth');
-Route::put('/mines/{mine}', [MineController::class, 'update'])->middleware('auth');
-Route::delete('/mines/{mine}', [MineController::class, 'destroy'])->middleware('auth');
-Route::get('/mines/{mine}', [MineController::class, 'show']);
+//quarries
+Route::get('/quarries', [QuarryController::class, 'index']);
+Route::get('/quarries/create', [QuarryController::class, 'create'])->middleware('auth');
+Route::get('/quarries/manage', [QuarryController::class, 'manage'])->middleware('auth');
+Route::post('/quarries', [QuarryController::class, 'store'])->middleware('auth');
+Route::get('/quarries/{quarry}/edit', [QuarryController::class, 'edit'])->middleware('auth');
+Route::put('/quarries/{quarry}', [QuarryController::class, 'update'])->middleware('auth');
+Route::delete('/quarries/{quarry}', [QuarryController::class, 'destroy'])->middleware('auth');
+Route::get('/quarries/{quarry}', [QuarryController::class, 'show']);
 
 //projects
 Route::get('/projects', [ProjectController::class, 'index']);

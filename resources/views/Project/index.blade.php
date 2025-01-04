@@ -4,7 +4,7 @@
      <div class="container">
   @include('partials._search')
          @if(count($projects)==0) 
-         <p>No project</p>
+         <p>{{__('messages.notFound')}}</p>
        @else
        <section>
         <div class="my-4">
@@ -17,10 +17,10 @@
                   </a>
                   <div class="container col-md-6  text-decoration-none" data-aos="fade-up"
                     data-aos-delay="100">
-                      <h2 class="text-center mb-3">title : {{$project->title}} </h2>
-                      <p >summary : {{$project->summary}} </p>
+                      <h2 class="text-center mb-3">title : {{$project['title_'.app()->getLocale()]}} </h2>
+                      <p >summary : {{$project['summary_'.app()->getLocale()]}}  </p>
                          <a class="text-decoration-none text-dark "  href="/projects/{{$project->id}}" class="text-decoration-none">
-                        more ...
+                        {{__('messages.more')}} ...
                       </a>
                         <x-tags :tagsCsv="$project['tags']" />
 

@@ -1,6 +1,6 @@
 <x-layout>
     <x-admin-dashboard>
-            @if (count($articles)) 
+            @if (empty($articles)) 
                 <div class="card">
                   <div class="card-header">
                     <h3 class="card-category text-center">
@@ -40,8 +40,8 @@
                     <li class="page-item"> {{$articles->links()}} </li>
                  </div>
                  @else
-                     <p class="my-5 text-center h1">No articles Found</p>
-                    <a href="/articles/create" class="nav-link text-success">{{__('messages.create')}} +</a>
+                     <p class="my-5 text-center h1">{{__('messages.notFound')}}
+                    <a href="/articles/create" class="nav-link text-success">{{__('messages.create')}} +</a></p>
                  @endif
     </x-admin-dashboard>
 </x-layout>

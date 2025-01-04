@@ -1,34 +1,32 @@
 <x-layout>
     <x-admin-dashboard>
-        @if (count($projectTypes))
+        @if (empty($projectTypes))
         <div class="card">
             <div class="card-header">
                 <h3 class="card-category text-center">
-                    Project Type List</h3>
+                    {{__('messages.projectTypes')}}</h3>
                 <h4 class="card-title">
-                    <a href="/projectTypes/create" class="btn btn-success">create +</a>
+                    <a href="/projectTypes/create" class="btn btn-success">{{__('messages.create')}}  +</a>
                 </h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table text-center">
                         <thead class=" text-primary ">
-                            <th class="text-end">Name</th>
-                            <th>Show</th>
-                            <th>Edit</th>
-                            <th> Delete</th>
+                            <th class="text-end">{{__('messages.name')}} </th>
+                            <th>{{__('messages.edit')}} </th>
+                            <th> {{__('messages.delete')}} </th>
                         </thead>
                         <tbody>
                             @foreach ($projectTypes as $projectType)
                             <tr>
-                                <td class="text-end">{{$projectType['name']}}</td>
-                                <td><a href="/projectTypes/{{$projectType['id']}}" class="nav-link text-success">show</a> </td>
-                                <td><a href="/projectTypes/{{$projectType->id}}/edit" class="nav-link text-success">Edit</a> </td>
+                                <td class="text-end">{{ $projectType['name_'. app()->getLocale()] }}</td>
+                                <td><a href="/projectTypes/{{$projectType->id}}/edit" class="nav-link text-success">{{__('messages.edit')}} </a> </td>
                                 <td>
                                     <form method="POST" action="/projectTypes/{{$projectType->id}}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn text-danger">Delete</button>
+                                        <button type="submit" class="btn text-danger">{{__('messages.delete')}} </button>
                                     </form>
                                 </td>
                             </tr>
@@ -42,8 +40,8 @@
             <li class="page-item"> {{$projectTypes->links()}} </li>
         </div>
         @else
-        <p class="my-5 text-center h1">No projectTypes Found</p>
-        <a href="/projectTypes/create" class="nav-link text-success">create one +</a>
+        <p class="my-5 text-center h1">{{__('messages.notFound')}} 
+        <a href="/projectTypes/create" class="nav-link text-success">{{__('messages.create')}} +</a></p>
         @endif
     </x-admin-dashboard>
 </x-layout>

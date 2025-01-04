@@ -2,44 +2,47 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Http\Controllers\Controller;
-use App\Models\Mine;
+use App\Models\Quarry;
 use App\Models\StoneType;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
-class MineController extends Controller
+class QuarryController extends Controller
 {
     public function index()
     {
-        return view("Mine.index", ['mines' => Mine::latest()->filter(request(['tag', 'search']))->paginate(4)]);
+        return view("Quarry.index", ['quarries' => Quarry::latest()->filter(request(['tag', 'search']))->paginate(4)]);
     }
 
 
-    public function show(Mine $mine)
+    public function show(Quarry $quarry)
     {
-        $relatedMines = Mine::latest()
+        $relatedQuarries = Quarry::latest()
             ->filter(request(['tag', 'search']))
-            ->where('id', '!=', $mine->id)  // Exclude the current mine
+            ->where('id', '!=', $quarry->id)  // Exclude the current Quarry
             ->take(4)
             ->get();
 
-        return view('mine.show', [
-            'mine' => $mine,
-            'relatedMines' => $relatedMines
+        return view('Quarry.show', [
+            'quarry' => $quarry,
+            'relatedQuarries' => $relatedQuarries
         ]);
     }
 
     public function create()
     {
-        return view("Mine.create", ['stoneTypes' => $this->getStoneType()]);
+        return view("Quarry.create", ['stoneTypes' => $this->getStoneType()]);
     }
 
     public function store(Request $request)
     {
         $formFields = $request->validate([
-            'name' => 'required',
-            'address' => 'required',
+            'name_fa' => 'required',
+            'name_en' => 'required',
+            'address_fa' => 'required',
+            'address_en' => 'required',
             'stone_type_id' => 'required'
         ]);
 
@@ -64,22 +67,24 @@ class MineController extends Controller
         $formFields['images'] = json_encode($formFields['images']);
 
 
-        Mine::create($formFields);
+        Quarry::create($formFields);
 
-        return redirect('/mines/manage')->with('message', 'Mine created successfully!');
+        return redirect('/Quarries/manage')->with('message', 'Quarry created successfully!');
     }
 
-    public function edit(Mine $mine)
+    public function edit(Quarry $quarry)
     {
-        return view('Mine.edit', ['mine' => $mine, 'stoneTypes' => $this->getStoneType()]);
+        return view('Quarry.edit', ['quarry' => $quarry, 'stoneTypes' => $this->getStoneType()]);
     }
 
-    public function update(Request $request, Mine $mine)
+    public function update(Request $request, Quarry $quarry)
     {
 
         $formFields = $request->validate([
-            'name' => 'required',
-            'address' => 'required',
+            'name_fa' => 'required',
+            'name_en' => 'required',
+            'address_fa' => 'required',
+            'address_en' => 'required',
             'stone_type_id' => 'required'
         ]);
 
@@ -87,7 +92,7 @@ class MineController extends Controller
         // Ensure the existing_images and new_images are arrays
         $existingImages = json_decode($request->input('existing_images'), true) ?? [];
         $newImages = json_decode($request->input('new_images'), true) ?? [];
-        $storedImages = json_decode($mine->images, true) ?? [];
+        $storedImages = json_decode($quarry->images, true) ?? [];
 
         // Initialize formFields['images'] with existing images
         $formFields['images'] = $existingImages;
@@ -127,21 +132,21 @@ class MineController extends Controller
         }
 
 
-        $mine->update($formFields);
+        $quarry->update($formFields);
 
-        return redirect('/mines/manage')->with('message', 'Mine Updated Successfully!');
+        return redirect('/Quarries/manage')->with('message', 'Quarry Updated Successfully!');
     }
 
     public function manage()
     {
-        return view('Mine.manage', ['mines' => Mine::latest()->filter(request(['search']))->paginate(6)]);
+        return view('Quarry.manage', ['quarries' => Quarry::latest()->filter(request(['search']))->paginate(6)]);
     }
 
-    public function destroy(Mine $mine)
+    public function destroy(Quarry $quarry)
     {
-        if ($mine->images) {
+        if ($quarry->images) {
             // Decode the JSON string to an array of image paths
-            $images = json_decode($mine->images, true);
+            $images = json_decode($quarry->images, true);
 
             // Iterate over each image path and delete the image
             foreach ($images as $image) {
@@ -151,13 +156,12 @@ class MineController extends Controller
             }
         }
 
-        $mine->delete();
-        return redirect('/mines/manage')->with('message', 'Mine deleted successfully');
+        $quarry->delete();
+        return redirect('/Quarries/manage')->with('message', 'Quarry deleted successfully');
     }
 
     private function getStoneType()
     {
         return StoneType::latest()->get();
     }
-
 }

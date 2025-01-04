@@ -13,7 +13,7 @@ return [
     'stoneTypes' => ' stoneTypes',
     'projects' => ' projects',
     'projectTypes' => 'projectTypes',
-    'mines' => 'mines',
+    'quarries' => 'Quarries',
     'logout' => 'logout',
     'dashboard' => 'dashboard',
     'search' => 'search',
@@ -32,4 +32,18 @@ return [
     'uploadImage' => 'Upload Image',
     'recentNews' => 'Recent News',
     'more' => 'more...',
+    'name' => 'Name',
+    'code' => 'Code',
+    'type' => 'type',
+    'notFound' => 'No Item Was Found',
+    'tensile_strength' => 'Tensile_Strength',
+    'water_absorption_rate' => 'Water_Absorption_Rate',
+    'compressive_strength' => 'Compressive_Strength',
+    'abrasion_resistance' => 'Abrasion_Resistance',
+    'specific_weight' => 'Specific_Weight',
+    'failure_mode' => 'Failure_Mode',
+    'porosity' => 'Porosity',
+
+
+
 ];

@@ -2,9 +2,9 @@
 
 <div data-role="secure-file-uploader"
 data-name="image" 
-data-default-photo="{{($image) ? asset('storage/'. $image) : asset('images/7.jpeg')}}" 
+data-default-photo="{{($image) ? asset('storage/'. $image) : ''}}" 
  data-id="image"
- data-max-size="300" 
+ data-max-size="3000" 
  data-min-size="50">
 </div>
 

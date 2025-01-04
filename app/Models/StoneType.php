@@ -17,9 +17,9 @@ class StoneType extends Model
                 ->orWhere('name_en', 'like', '%' . request('search') . '%');
         }
     }
-    public function mine()
+    public function quarry()
     {
-        return $this->hasMany(Mine::class);
+        return $this->hasMany(Quarry::class);
     }
     public function stone()
     {

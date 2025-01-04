@@ -16,8 +16,9 @@ class StoneController extends Controller
     }
     public function show(Stone $stone)
     {
-        return view("Stone.show", ['stone' => $stone, 'relatedStones' => Stone::latest()->filter(request(['search']))->take(4)->get()]);
+        return view("Stone.show", ['stone' => $stone]);
     }
+
 
     public function create()
     {
@@ -28,17 +29,24 @@ class StoneController extends Controller
     {
         $formFields = $request->validate([
             'code' => 'required',
-            'name' => 'required',
-            'Tensile_Strength' => 'required',
-            'Water_Absorption_Rate' => 'required',
-            'Compressive_Strength' => 'required',
-            'Abrasion_Resistance' => 'required',
-            'Specific_Weight' => 'required',
-            'Failure_Mode' => 'required',
-            'Porosity' => 'required',
+            'name_fa' => 'required',
+            'name_en' => 'required',
+            'tensile_strength_fa' => 'required',
+            'tensile_strength_en' => 'required',
+            'water_absorption_rate_fa' => 'required',
+            'water_absorption_rate_en' => 'required',
+            'compressive_strength_fa' => 'required',
+            'compressive_strength_en' => 'required',
+            'abrasion_resistance_fa' => 'required',
+            'abrasion_resistance_en' => 'required',
+            'specific_weight_fa' => 'required',
+            'specific_weight_en' => 'required',
+            'failure_mode_fa' => 'required',
+            'failure_mode_en' => 'required',
+            'porosity_fa' => 'required',
+            'porosity_en' => 'required',
             'stone_type_id' => 'required'
         ]);
-
 
         if ($request->hasFile('image')) {
             $formFields['image'] = $request->file('image')->store('StoneImage', 'public');
@@ -59,14 +67,22 @@ class StoneController extends Controller
 
         $formFields = $request->validate([
             'code' => 'required',
-            'name' => 'required',
-            'Tensile_Strength' => 'required',
-            'Water_Absorption_Rate' => 'required',
-            'Compressive_Strength' => 'required',
-            'Abrasion_Resistance' => 'required',
-            'Specific_Weight' => 'required',
-            'Failure_Mode' => 'required',
-            'Porosity' => 'required',
+            'name_fa' => 'required',
+            'name_en' => 'required',
+            'tensile_strength_fa' => 'required',
+            'tensile_strength_en' => 'required',
+            'water_absorption_rate_fa' => 'required',
+            'water_absorption_rate_en' => 'required',
+            'compressive_strength_fa' => 'required',
+            'compressive_strength_en' => 'required',
+            'abrasion_resistance_fa' => 'required',
+            'abrasion_resistance_en' => 'required',
+            'specific_weight_fa' => 'required',
+            'specific_weight_en' => 'required',
+            'failure_mode_fa' => 'required',
+            'failure_mode_en' => 'required',
+            'porosity_fa' => 'required',
+            'porosity_en' => 'required',
             'stone_type_id' => 'required'
         ]);
 

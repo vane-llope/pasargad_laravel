@@ -8,16 +8,16 @@
                     <x-image-carousel :images="$project->images" :carouselId="$project->id"/> 
                   
                     <h1 class="my-4">{{ $project['title'] }}</h1>
-                    <h4>{{ $project['summary'] }}</h4>
-                    <p>{!! $project['description'] !!}</p>
+                    <h4>{{ $project['summary_'.app()->getLocale()] }}</h4>
+                    <p>{!! $project['description_'.app()->getLocale()] !!}</p>
                     <x-tags :tagsCsv="$project['tags']" />
                </div>
                <div class="col-md-4">
                     @if(count($relatedProjects) != 0) 
                         @foreach ($relatedProjects as $relatedProject)
                             <x-image-carousel :images="$relatedProject->images" :carouselId="$relatedProject->id"/> 
-                            <a class="h5 nav-link fw-bold text-dark" href="/articles/{{ $relatedProject->id }}">{{ $relatedProject->title }}</a>
-                            <p>{{ $relatedProject->summary }}</p>
+                            <a class="h5 nav-link fw-bold text-dark" href="/articles/{{ $relatedProject->id }}">{{ $relatedProject['title_'.app()->getLocale()]}}</a>
+                            <p>{{ $relatedProject['sammary_'.app()->getLocale()] }}</p>
                             <hr>
                         @endforeach
                     @endif 

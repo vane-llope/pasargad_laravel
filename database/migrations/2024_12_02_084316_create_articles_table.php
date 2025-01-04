@@ -13,10 +13,13 @@ return new class extends Migration {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->longText('images');
-            $table->string('title');
-            $table->longText('summary');
-            $table->longText('description');
-            $table->string('tags');
+            $table->string('title_fa');
+            $table->string('title_en');
+            $table->longText('summary_fa');
+            $table->longText('summary_en');
+            $table->longText('description_fa');
+            $table->longText('description_en');
+            $table->longText('tags');
             $table->timestamps();
         });
     }

@@ -1,6 +1,7 @@
 <x-layout> 
   <x-admin-dashboard>
  <div class="container">
+  @include('partials._setLanguage')
     <form method="POST" action="/stoneTypes/{{$stoneType->id}}" enctype="multipart/form-data">
         @csrf
         @method('PUT')

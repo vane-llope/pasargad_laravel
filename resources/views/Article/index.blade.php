@@ -1,5 +1,4 @@
 <x-layout>
-  
   @include('partials._navbar')
       <div class="space"></div>
      <div class="container">
@@ -12,9 +11,9 @@
         <div class="col-md-6">
           <x-image-carousel :images="$article->images" :carouselId="$article->id"/> 
         </div>
-        <div class="col-md-6">
-          <a class="h1 nav-link" href="/articles/{{$article->id}}">{{$article->title}}</a>
-          <h5>{{$article->summary}}</h5>
+        <div class="col-md-6 p-4 pt-0">
+          <a class="h1 nav-link" href="/articles/{{$article->id}}">{{ $article['title_'. app()->getLocale()] }}</a>
+          <p>{{ $article['summary_'. app()->getLocale()] }} <a  href="/articles/{{$article->id}}" class="text-primary text-decoration-none"> {{__('messages.more')}}</a></p>
           <x-tags :tagsCsv="$article['tags']" />
         </div>
         </div>

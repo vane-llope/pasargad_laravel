@@ -1,12 +1,10 @@
 <x-layout> 
   <x-admin-dashboard>
  <div class="container my-5">
+  @include('partials._setLanguage')
     <form method="POST" action="/mines/{{$mine->id}}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-
-              
-
             <div class="form-floating mb-3">
               <input type="text" name="name" value="{{$mine->name}}"  class="form-control" id="floatingInput" >
               <label for="floatingInput">name</label>

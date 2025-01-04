@@ -22,7 +22,7 @@ $contrast-color: #ffffff;
 
 * {
     font-family: 'Gandom';
-    direction: rtl;
+
 }
 
 .main-text-color {
@@ -95,7 +95,7 @@ $contrast-color: #ffffff;
 
 @media(max-width: 767px) {
     .navbar-nav .dropdown-menu .dropdown-item {
-        direction: ltr !important;
+        // direction: ltr !important;
         text-align: end !important;
     }
 

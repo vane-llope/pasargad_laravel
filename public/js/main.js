@@ -28,3 +28,24 @@ document.querySelectorAll('.myTextarea').forEach(textarea =>
         }
     });
 });
+//set diraction
+document.addEventListener('DOMContentLoaded', function ()
+{
+    var direction = localStorage.getItem('direction');
+    if (direction)
+    {
+        document.documentElement.setAttribute('dir', direction);
+    }
+});
+
+function setDirection(direction)
+{
+    document.documentElement.setAttribute('dir', direction);
+    localStorage.setItem('direction', direction);
+}
+
+//setDirectionTemperary
+function setDirectionTemperary(direction)
+{
+    document.documentElement.setAttribute('dir', direction);
+}

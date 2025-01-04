@@ -12,7 +12,6 @@
 
 * {
   font-family: "Gandom";
-  direction: rtl;
 }
 
 .main-text-color {
@@ -80,7 +79,6 @@
 
 @media (max-width: 767px) {
   .navbar-nav .dropdown-menu .dropdown-item {
-    direction: ltr !important;
     text-align: end !important;
   }
   .navbar-nav .dropdown-menu {

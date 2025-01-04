@@ -45,6 +45,8 @@
         </div>
         @else
         <p class="my-5 text-center h1">No stones Found</p>
+        
+        <a href="/stoneTypes/create" class="nav-link text-success">create one +</a>
         @endif
     </x-admin-dashboard>
 </x-layout>

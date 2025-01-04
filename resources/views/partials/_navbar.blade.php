@@ -54,9 +54,12 @@
                         زبان
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown4">
-                            <li><a class="dropdown-item text-light fw-bold" href="{{ url('/setlocale/fa') }}">فارسی</a></li>
-                            <li><a class="dropdown-item text-light fw-bold" href="{{ url('/setlocale/en') }}">انکیلیسی</a></li>
+                        <li><a class="dropdown-item text-light fw-bold" href="{{ url('/setlocale/fa') }}" onclick="setDirection('rtl')">فارسی</a></li>
+                        <li><a class="dropdown-item text-light fw-bold" href="{{ url('/setlocale/en') }}" onclick="setDirection('ltr')">English</a></li>
                     </ul>
+                    
+                  
+                    
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active fw-bold" href="/articles">اخبار</a>

@@ -1,6 +1,7 @@
 <x-layout>
   <x-admin-dashboard>
   <div class="container my-5">
+    @include('partials._setLanguage')
     <form method="POST" action="/projects" enctype="multipart/form-data">
         @csrf
       <div class="form-floating mb-3">

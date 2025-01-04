@@ -10,15 +10,23 @@ class Stone extends Model
     use HasFactory;
     protected $fillable = [
         'code',
-        'name',
+        'name_fa',
+        'name_en',
         'image',
-        'Tensile_Strength',
-        'Water_Absorption_Rate',
-        'Compressive_Strength',
-        'Abrasion_Resistance',
-        'Specific_Weight',
-        'Failure_Mode',
-        'Porosity',
+        'Tensile_Strength_fa',
+        'Tensile_Strength_en',
+        'Water_Absorption_Rate_fa',
+        'Water_Absorption_Rate_en',
+        'Compressive_Strength_fa',
+        'Compressive_Strength_en',
+        'Abrasion_Resistance_fa',
+        'Abrasion_Resistance_en',
+        'Specific_Weight_fa',
+        'Specific_Weight_en',
+        'Failure_Mode_fa',
+        'Failure_Mode_en',
+        'Porosity_fa',
+        'Porosity_en',
         'stone_type_id'
     ];
     public function stoneType()
@@ -30,10 +38,12 @@ class Stone extends Model
         if ($filters['search'] ?? false) {
             $searchTerm = '%' . request('search') . '%';
 
-            $query->where('name', 'like', $searchTerm)
+            $query->where('name_fa', 'like', $searchTerm)
+                ->orWhere('name_en', 'like', $searchTerm)
                 ->orWhere('code', 'like', $searchTerm)
                 ->orWhereHas('stoneType', function ($query) use ($searchTerm) {
-                    $query->where('name', 'like', $searchTerm);
+                    $query->where('name_fa', 'like', $searchTerm)
+                        ->orWhere('name_en', 'like', $searchTerm);
                 });
         }
     }

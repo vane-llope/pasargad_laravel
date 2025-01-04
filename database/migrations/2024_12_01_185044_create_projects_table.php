@@ -12,11 +12,14 @@ return new class extends Migration {
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->longText('summary');
-            $table->longText('description');
+            $table->string('title_fa');
+            $table->string('title_en');
+            $table->longText('summary_fa');
+            $table->longText('summary_en');
+            $table->longText('description_fa');
+            $table->longText('description_en');
             $table->json('images');
-            $table->string('tags');
+            $table->longText('tags');
             $table->unsignedBigInteger('project_type_id');
             $table->foreign('project_type_id')->references('id')->on('project_types')->onDelete('cascade'); // Update this line
             $table->timestamps();

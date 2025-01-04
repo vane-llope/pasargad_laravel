@@ -3,22 +3,22 @@
       <div class="logo">
           <a href="./dashboard.html" class="d-flex text-light nav-link h3">
               <i class="bi bi-speedometer2 m-2 my-0"></i>
-              <p class="me-3">Dashboard</p>
+              <p class="me-3">{{__('messages.dashboard')}}</p>
           </a>
       </div>
       <div class="sidebar-wrapper" id="sidebar-wrapper">
           <ul class="nav">
-              <li><a href="/stones/manage"><i class="bi bi-bricks"></i> <p>Stone</p></a></li>
-              <li><a href="/mines/manage"><i class="bi bi-minecart-loaded"></i> <p>Mine</p></a></li>
-              <li><a href="/articles/manage"><i class="bi bi-card-text"></i> <p>Article</p></a></li>
-              <li><a href="/projects/manage"><i class="bi bi-buildings-fill"></i> <p>Project</p></a></li>
-              <li><a href="/stoneTypes/manage"><i class="bi bi-hammer"></i> <p>Stone Type</p></a></li>
-              <li><a href="/projectTypes/manage"><i class="bi bi-building-fill-check"></i> <p>Project Type</p></a></li>
+              <li><a href="/stones/manage"><i class="bi bi-bricks"></i> <p>{{__('messages.stones')}}</p></a></li>
+              <li><a href="/mines/manage"><i class="bi bi-minecart-loaded"></i> <p>{{__('messages.mines')}}</p></a></li>
+              <li><a href="/articles/manage"><i class="bi bi-card-text"></i> <p>{{__('messages.articles')}}</p></a></li>
+              <li><a href="/projects/manage"><i class="bi bi-buildings-fill"></i> <p>{{__('messages.projects')}}</p></a></li>
+              <li><a href="/stoneTypes/manage"><i class="bi bi-hammer"></i> <p>{{__('messages.stoneTypes')}}</p></a></li>
+              <li><a href="/projectTypes/manage"><i class="bi bi-building-fill-check"></i> <p>{{__('messages.projectTypes')}}</p></a></li>
               <li class="active-pro">
                   <a href="./upgrade.html"><i class="bi bi-door-open-fill"></i>
                       <form action="/user/logout" method="POST">
                           @csrf
-                          <button class="btn text-light" type="submit">logout</button>
+                          <button class="btn text-light" type="submit">{{__('messages.logout')}}</button>
                       </form>
                   </a>
               </li>
@@ -37,7 +37,7 @@
                           <span class="navbar-toggler-bar bar3"></span>
                       </button>
                   </div>
-                  <a class="fw-bold h5 nav-link text-light" href="#pablo">Pasargad</a>
+                  <a class="fw-bold h5 nav-link text-light" href="#pablo">{{__('messages.pasargad')}}</a>
               </div>
               <div class="collapse navbar-collapse justify-content-end" id="navigation">
                   @include('partials._search')

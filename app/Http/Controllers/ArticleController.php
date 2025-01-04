@@ -36,17 +36,19 @@ class ArticleController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->file('image'));
+
+        // dd($request);
         $formFields = $request->validate([
-            'title' => 'required',
-            'summary' => 'required',
-            'description' => 'required',
+            'title_fa' => 'required',
+            'title_en' => 'required',
+            'summary_fa' => 'required',
+            'summary_en' => 'required',
+            'description_fa' => 'required',
+            'description_en' => 'required',
             'tags' => 'required'
         ]);
-
         // Initialize 'images' field as an empty array
         $formFields['images'] = [];
-
         // Handle new base64 images
         $newImages = json_decode($request->input('new_images'), true) ?? [];
         foreach ($newImages as $newImage) {
@@ -78,9 +80,12 @@ class ArticleController extends Controller
     {
 
         $formFields = $request->validate([
-            'title' => 'required',
-            'summary' => 'required',
-            'description' => 'required',
+            'title_fa' => 'required',
+            'title_en' => 'required',
+            'summary_fa' => 'required',
+            'summary_en' => 'required',
+            'description_fa' => 'required',
+            'description_en' => 'required',
             'tags' => 'required'
         ]);
 

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Mine extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'images', 'address', 'stone_type_id'];
+    protected $fillable = ['name_fa', 'name_en', 'images', 'address_fa', 'address_en', 'stone_type_id'];
 
     public function stoneType()
     {
@@ -20,9 +20,11 @@ class Mine extends Model
         if ($filters['search'] ?? false) {
             $searchTerm = '%' . request('search') . '%';
 
-            $query->where('name', 'like', $searchTerm)
+            $query->where('name_fa', 'like', $searchTerm)
+                ->orWhere('name_en', 'like', $searchTerm)
                 ->orWhereHas('stoneType', function ($query) use ($searchTerm) {
-                    $query->where('name', 'like', $searchTerm);
+                    $query->where('name_fa', 'like', $searchTerm)
+                        ->orWhere('name_en', 'like', $searchTerm);
                 });
         }
     }

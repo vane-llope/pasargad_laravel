@@ -41,6 +41,8 @@
                  </div>
                  @else
                      <p class="my-5 text-center h1">No mines Found</p>
+                     
+                    <a href="/mines/create" class="nav-link text-success">create one +</a>
                  @endif
     </x-admin-dashboard>
 </x-layout>

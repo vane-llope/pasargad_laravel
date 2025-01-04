@@ -23,7 +23,7 @@
 </style>
 
 <div id="image-uploader" data-default-photos='@json($imagesArray)'>
-  <label for="image-input" class='btn main-btn-color text-light mb-2'>Upload Images</label>
+  <label for="image-input" class='btn main-btn-color text-light mb-2'>{{__('messages.uploadImage')}}</label>
   <input type="file" class="d-none" multiple id="image-input" accept="image/*">
   <div class="w-100 mb-3" id="image-container"></div>
 </div>
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const removeBtn = document.createElement('button');
     removeBtn.classList.add('btn', 'btn-danger', 'btn-sm');
-    removeBtn.innerText = 'Remove';
+    removeBtn.innerText = '{{__("messages.delete")}}';
     removeBtn.dataset.photo = photo;
 
     removeBtn.addEventListener('click', function() {

@@ -12,9 +12,11 @@ return new class extends Migration {
     {
         Schema::create('mines', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name_fa');
+            $table->string('name_en');
             $table->json('images');
-            $table->string('address');
+            $table->string('address_fa');
+            $table->string('address_en');
             $table->unsignedBigInteger('stone_type_id');
             $table->foreign('stone_type_id')->references('id')->on('stone_types')->onDelete('cascade');
             $table->timestamps();

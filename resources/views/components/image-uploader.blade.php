@@ -13,7 +13,7 @@ data-default-photo="{{($image) ? asset('storage/'. $image) : asset('images/7.jpe
  $(document).ready(function () {
              let $element = $('[data-role="secure-file-uploader"]')
             //-------------elements  -  input----------------
-            let $label = $("<label class='btn main-btn-color text-light mb-2'>Upload Image</label>")
+            let $label = $("<label class='btn main-btn-color text-light mb-2'>{{__('messages.uploadImage')}}</label>")
             let $input = $('<input class="d-none"/>')
             $element.append($label)
 

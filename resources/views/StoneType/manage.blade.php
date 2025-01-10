@@ -1,6 +1,6 @@
 <x-layout>
     <x-admin-dashboard>
-        @if (empty($stoneTypes))
+        @if (count($stoneTypes))
         <div class="card">
             <div class="card-header">
                 <h3 class="card-category text-center">

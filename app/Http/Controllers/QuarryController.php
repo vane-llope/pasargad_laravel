@@ -69,7 +69,7 @@ class QuarryController extends Controller
 
         Quarry::create($formFields);
 
-        return redirect('/Quarries/manage')->with('message', 'Quarry created successfully!');
+        return redirect('/quarries/manage')->with('message', 'Quarry created successfully!');
     }
 
     public function edit(Quarry $quarry)
@@ -134,7 +134,7 @@ class QuarryController extends Controller
 
         $quarry->update($formFields);
 
-        return redirect('/Quarries/manage')->with('message', 'Quarry Updated Successfully!');
+        return redirect('/quarries/manage')->with('message', 'Quarry Updated Successfully!');
     }
 
     public function manage()
@@ -157,7 +157,7 @@ class QuarryController extends Controller
         }
 
         $quarry->delete();
-        return redirect('/Quarries/manage')->with('message', 'Quarry deleted successfully');
+        return redirect('/quarries/manage')->with('message', 'Quarry deleted successfully');
     }
 
     private function getStoneType()

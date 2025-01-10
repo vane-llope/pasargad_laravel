@@ -63,7 +63,7 @@
           <div class="container">
             <div class="form-floating mb-3">
               <input type="text" name="tags" value="{{ old('tags') }}" class="form-control" id="floatingInput">
-              <label for="floatingInput">tags</label>
+              <label for="floatingInput">{{__('messages.tags')}}</label>
               @error('tags')
               <p class="text-danger">{{ $message }}</p>
               @enderror

@@ -15,7 +15,6 @@ class ProjectTypeController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->file('image'));
         $formFields = $request->validate([
             'name_fa' => 'required',
             'name_en' => 'required'

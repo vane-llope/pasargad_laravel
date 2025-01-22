@@ -1,5 +1,5 @@
 <hr>
-<footer id="footer" class="footer position-relative light-background">
+<footer id="footer" class="footer position-relative light-background" data-aos="fade-up" data-aos-delay="100">
     <div class="container mt-5">
         <div class="row gy-4">
             <div class="col-md-3">

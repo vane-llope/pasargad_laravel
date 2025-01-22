@@ -45,7 +45,32 @@ function setDirection(direction)
 }
 
 //setDirectionTemperary
-function setDirectionTemperary(direction)
+function setDirectionTemperary(direction, element)
 {
     document.documentElement.setAttribute('dir', direction);
+
+    // Reset styles for all links
+    const links = document.querySelectorAll('.nav-link');
+    links.forEach(link =>
+    {
+        link.style.color = ''; // Reset color
+        link.style.fontSize = ''; // Reset size
+    });
+
+    // Change style of the clicked link
+    element.style.color = 'black'; // Set the active link to black
 }
+
+/**
+  * Animation on scroll function and init
+  */
+function aosInit()
+{
+    AOS.init({
+        duration: 500,
+        easing: 'ease-in-out',
+        once: true,
+        mirror: false
+    });
+}
+window.addEventListener('load', aosInit);

@@ -9,8 +9,10 @@
     <link rel="stylesheet" href="{{asset('style/style.css')}}">
     <link rel="stylesheet" href="{{asset('style/now-ui-dashboard/now-ui-dashboard.css')}}">
     <link rel="stylesheet" href="{{asset('swiper/swiper-bundle.min.css')}}">
+    <link rel="stylesheet" href="{{asset('aos/aos.css')}}">
     <script src="{{asset('swiper/swiper-bundle.min.js')}}"></script>
     <script src="{{asset('js/main.js')}}"></script>
+    <script src="{{asset('aos/aos.js')}}"></script>
   
     {{-- <script src="{{asset('bootstrap5/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('bootstrap5/bootstrap.min.js')}}"></script> --}}
@@ -25,7 +27,9 @@
 <body>
 
    <x-flash-message/>
+   <div class="overflow-hidden" data-aos="fade-out" data-aos-delay="10">
     {{$slot}}
+   </div>
 
 </body>
 </html>

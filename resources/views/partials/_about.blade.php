@@ -1,5 +1,5 @@
 <!-- Features Details Section -->
-<section id="features-details" class="features-details section">
+<section id="features-details" class="features-details section" data-aos="fade-left" data-aos-delay="100">
 
     <div class="container">
 
@@ -20,7 +20,7 @@
 
         <div class="row gy-4 justify-content-between features-item my-5  ">
 
-            <div class="col-lg-5 d-flex align-items-center order-2 order-lg-1" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-5 d-flex align-items-center order-2 order-lg-1" data-aos="fade-right" data-aos-delay="100">
 
                 <div class="content">
                     <h3>{{ __('messages.quality_product') }}</h3>

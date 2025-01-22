@@ -9,7 +9,7 @@
 
        <section>
         <div class="mb-5">
-            <div class="container section-title" data-aos="fade-up">
+            <div class="container section-title" data-aos="fade-up" data-aos-delay="100">
                 <!--news-->
                 <div class="position-relative container">
                     <hr>
@@ -24,7 +24,7 @@
                 <div class="container my-5">
                   <div class="row g-5 ">
                     @foreach ($quarries as $quarry)
-                      <a href="/quarries/{{$quarry->id}}" class="container col-md-6 text-decoration-none " data-aos="fade-up" data-aos-delay="150">
+                      <a href="/quarries/{{$quarry->id}}" class="container col-md-6 text-decoration-none " data-aos="fade-down" data-aos-delay="150">
                         <x-image-carousel :images="$quarry->images" :carouselId="$quarry->id"/> 
                           <h1 class="text-dark">  {{ $quarry['name_'. app()->getLocale()] }} _ {{$quarry->stoneType->name.'_'. app()->getLocale() }}</h1>
                           <p class="text-dark">{{ $quarry['address_'. app()->getLocale()] }}</p>

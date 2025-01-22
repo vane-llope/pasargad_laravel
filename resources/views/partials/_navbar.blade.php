@@ -21,7 +21,7 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @foreach ($stoneTypes as $stoneType)
                             <li><a class="dropdown-item text-light fw-bold"
-                                    href="/stones?search={{ $stoneType->name }}">{{ $stoneType['name_' . app()->getLocale()] }}</a>
+                                    href="/stones?search={{  $stoneType['name_' . app()->getLocale()]}}">{{ $stoneType['name_' . app()->getLocale()] }}</a>
                             </li>
                         @endforeach
                     </ul>
@@ -34,7 +34,7 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
                         @foreach ($projectTypes as $projectType)
                             <li><a class="dropdown-item text-light fw-bold"
-                                    href="/projects?search={{ $projectType->name }}">{{ $projectType['name_' . app()->getLocale()] }}</a>
+                                    href="/projects?search={{ $projectType['name_' . app()->getLocale()] }}">{{ $projectType['name_' . app()->getLocale()] }}</a>
                             </li>
                         @endforeach
                     </ul>
@@ -47,7 +47,7 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
                         @foreach ($stoneTypes as $stoneType)
                             <li><a class="dropdown-item text-light fw-bold"
-                                    href="/mines?search={{ $stoneType->name }}">{{ $stoneType['name_' . app()->getLocale()] }}</a>
+                                    href="/quarries?search={{ $stoneType['name_' . app()->getLocale()]  }}">{{ $stoneType['name_' . app()->getLocale()] }}</a>
                             </li>
                         @endforeach
                     </ul>

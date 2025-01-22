@@ -4,7 +4,7 @@
     <div class="container">
         @include('partials._search')
 
-        <div class="card my-5">
+        <div class="card my-5" data-aos="fade-up" data-aos-delay="100">
             <div class="card-header">
                 <h3 class="card-category text-center">
                     آنالیز سنگ</h3>
@@ -44,13 +44,11 @@
                 </div>
             </div>
         </div>
-        <div class="row my-5">
-            <div class="col-md-8">
+            <div class="col-md-12" data-aos="fade-up" data-aos-delay="100">
                 <img class="w-100" src="{{ asset('storage/' . $stone->image) }}" alt="" srcset="">
 
             </div>
 
-        </div>
 
     </div>
     @include('partials._footer')

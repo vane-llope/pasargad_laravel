@@ -7,8 +7,8 @@
               @csrf
 
               <div class="d-flex justify-content-center mt-2" style="direction: rtl;">
-                <a href="#stoneCarousel" class="nav-link text-dark fw-bold" role="button" data-bs-slide-to="0" onclick="setDirectionTemperary('rtl')">فارسی</a>
-                <a href="#stoneCarousel" class="nav-link text-dark fw-bold" role="button" data-bs-slide-to="1" onclick="setDirectionTemperary('ltr')">English</a>
+                <a href="#stoneCarousel" class="nav-link  fw-bold" role="button" data-bs-slide-to="0" onclick="setDirectionTemperary('rtl',this)">فارسی</a>
+                <a href="#stoneCarousel" class="nav-link  fw-bold" role="button" data-bs-slide-to="1" onclick="setDirectionTemperary('ltr',this)">English</a>
             </div>
             
 
@@ -151,7 +151,6 @@
                       </div>
                   </div>
               </div>
-
               <div class="container">
               <select name="stone_type_id" class="form-select my-3" aria-label="Default select example">
                   @foreach ($stoneTypes as $stoneType)
@@ -161,7 +160,7 @@
 
               <div class="form-floating mb-3">
                 <input type="text" name="code" value="{{ old('code') }}" class="form-control" id="floatingInput">
-                <label for="floatingInput">code</label>
+                <label for="floatingInput">{{__('messages.code')}}</label>
                 @error('code')
                     <p class="text-danger">{{ $message }}</p>
                 @enderror

@@ -99,8 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     imgContainer.appendChild(img);
     imgContainer.appendChild(removeBtn);
-    imageContainer.appendChild(imgContainer);
-
+    imageContainer.appendChild(imgContainer);  
     console.log('Image element created:', imgContainer);
   }
 

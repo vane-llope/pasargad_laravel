@@ -1,7 +1,7 @@
 <x-layout>
      @include('partials._navbar')
      <div class="space"></div>
-       <div class="container">
+       <div class="container" data-aos="fade-up" data-aos-delay="100">
           @include('partials._search')
           <div class="row my-5">
                <div class="col-md-8">
@@ -12,7 +12,7 @@
                     <p>{!! $project['description_'.app()->getLocale()] !!}</p>
                     <x-tags :tagsCsv="$project['tags']" />
                </div>
-               <div class="col-md-4">
+               <div class="col-md-4" data-aos="fade-down" data-aos-delay="100">
                     @if(count($relatedProjects) != 0) 
                         @foreach ($relatedProjects as $relatedProject)
                             <x-image-carousel :images="$relatedProject->images" :carouselId="$relatedProject->id"/> 

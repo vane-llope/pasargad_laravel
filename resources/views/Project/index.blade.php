@@ -15,12 +15,12 @@
                       data-aos-delay="100">
                       <x-image-carousel :images="$project->images" :carouselId="$project->id"/> 
                   </a>
-                  <div class="container col-md-6  text-decoration-none" data-aos="fade-up"
-                    data-aos-delay="100">
-                      <h2 class="text-center mb-3">title : {{$project['title_'.app()->getLocale()]}} </h2>
-                      <p >summary : {{$project['summary_'.app()->getLocale()]}}  </p>
-                         <a class="text-decoration-none text-dark "  href="/projects/{{$project->id}}" class="text-decoration-none">
-                        {{__('messages.more')}} ...
+                  <div class="container col-md-6 p-4 py-0 text-decoration-none" data-aos="fade-up"
+                    data-aos-delay="150">
+                      <h2 class=" text-dark h3 mb-3">{{$project['title_'.app()->getLocale()]}} </h2>
+                      <p >{{$project['summary_'.app()->getLocale()]}}  </p>
+                         <a class="text-decoration-none main-text-color"  href="/projects/{{$project->id}}" >
+                        {{__('messages.more')}} 
                       </a>
                         <x-tags :tagsCsv="$project['tags']" />
 

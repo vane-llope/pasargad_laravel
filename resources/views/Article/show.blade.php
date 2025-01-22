@@ -1,7 +1,7 @@
 <x-layout>
      @include('partials._navbar')
      <div class="space"></div>
-       <div class="container" >
+       <div class="container" data-aos="fade-up" data-aos-delay="100">
           @include('partials._search')
           <div class="row my-5">
                <div class="col-md-8">
@@ -14,7 +14,7 @@
                     <p>{!! $article['description_'. app()->getLocale()] !!} </p>
                     <x-tags :tagsCsv="$article['tags']" />
                </div>
-               <div class="col-md-4">
+               <div class="col-md-4" data-aos="fade-down" data-aos-delay="100">
                     <h2>{{__('messages.recentNews')}}</h2>
                     @if(count($latestArticles)!=0) 
                    @foreach ($latestArticles as $latestArticle)

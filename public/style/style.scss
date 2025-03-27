@@ -22,7 +22,7 @@ $contrast-color: #ffffff;
 
 * {
     font-family: 'Gandom';
-
+    direction: rtl;
 }
 
 .main-text-color {
@@ -83,6 +83,7 @@ $contrast-color: #ffffff;
     z-index: 555;
 }
 
+/* Base Dropdown Styles */
 .navbar-nav .dropdown-menu {
     background-color: rgba(19, 18, 18, 0.663);
 }
@@ -91,16 +92,47 @@ $contrast-color: #ffffff;
     background-color: black;
 }
 
+/* RTL-specific styles */
+[dir="rtl"] .navbar-nav .dropdown-menu {
+    text-align: right;
+    /* Align dropdown items to the right */
+    left: auto !important;
+    /* Prevent default left alignment */
+    right: 0 !important;
+    /* Align dropdown to the right */
+}
 
+/* LTR-specific styles */
+[dir="ltr"] .navbar-nav .dropdown-menu {
+    text-align: left;
+    /* Align dropdown items to the left */
+    right: auto !important;
+    /* Prevent default right alignment */
+    left: 0 !important;
+    /* Align dropdown to the left */
+}
 
-@media(max-width: 767px) {
+/* Mobile-specific adjustments */
+@media (max-width: 767px) {
+    .navbar-nav .dropdown-menu {
+        background-color: transparent;
+        width: 100%;
+        /* Make dropdown span full width */
+        padding: 0;
+        border: none;
+    }
+
     .navbar-nav .dropdown-menu .dropdown-item {
-        // direction: ltr !important;
+        display: block;
+        padding: 10px 15px;
+    }
+
+    [dir="rtl"] .navbar-nav .dropdown-menu .dropdown-item {
         text-align: end !important;
     }
 
-    .navbar-nav .dropdown-menu {
-        background-color: transparent;
+    [dir="ltr"] .navbar-nav .dropdown-menu .dropdown-item {
+        text-align: start !important;
     }
 }
 
@@ -578,5 +610,46 @@ section,
         width: 100%;
         bottom: 10px;
         right: 10px;
+    }
+}
+
+//LOADER
+.loader {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    z-index: 9999;
+    width: 50px;
+    height: 50px;
+    margin: -25px 0 0 -25px;
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid #3498db;
+    width: 40px;
+    height: 40px;
+    @include spin(2s, linear, infinite);
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@mixin spin($duration, $timing-function, $iteration-count) {
+    animation: spin $duration $timing-function $iteration-count;
+}
+
+//switch toggle
+.form {
+    .form-switch {
+        .form-check-input:checked {
+            background-color: $main-color;
+            /* Ensures it overrides other styles */
+        }
     }
 }

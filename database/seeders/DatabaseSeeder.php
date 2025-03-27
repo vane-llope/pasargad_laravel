@@ -27,9 +27,9 @@ class DatabaseSeeder extends Seeder
         // Project::factory(10)->create();
         // ProjectType::factory(2)->create();
         User::factory()->create([
-            'name' => 'Zahra',
-            'email' => 'zahraaa.syi@gmail.com',
-            'password' => '123456',
+            'name' => 'Pasargad',
+            'email' => 'pishgamansang.pasargad@gmail.com',
+            'password' => 'Pasargad@20025!',
         ]);
 
     }

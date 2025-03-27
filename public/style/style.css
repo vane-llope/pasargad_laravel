@@ -4,6 +4,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 /* Global Colors */
 /* Smooth scroll */
 :root {
@@ -37,6 +38,7 @@
   padding-bottom: 50px;
   position: relative;
 }
+
 .footer .social-links a {
   display: flex;
   align-items: center;
@@ -50,10 +52,12 @@
   margin-right: 10px;
   transition: 0.3s;
 }
+
 .footer .social-links a:hover {
   color: #c1121f;
   border-color: #c1121f;
 }
+
 .footer h4 {
   font-size: 16px;
   font-weight: bold;
@@ -81,10 +85,12 @@
   .navbar-nav .dropdown-menu .dropdown-item {
     text-align: end !important;
   }
+
   .navbar-nav .dropdown-menu {
     background-color: transparent;
   }
 }
+
 /*--------------------------------------------------------------
 # Global Sections
 --------------------------------------------------------------*/
@@ -98,11 +104,13 @@ section,
 }
 
 @media (max-width: 1199px) {
+
   section,
   .section {
     scroll-margin-top: 66px;
   }
 }
+
 /*--------------------------------------------------------------
 # Global Section Titles
 --------------------------------------------------------------*/
@@ -111,6 +119,7 @@ section,
   padding-bottom: 60px;
   position: relative;
 }
+
 .section-title h2 {
   font-size: 32px;
   font-weight: 700;
@@ -118,6 +127,7 @@ section,
   padding-bottom: 20px;
   position: relative;
 }
+
 .section-title h2::after {
   content: "";
   position: absolute;
@@ -130,6 +140,7 @@ section,
   bottom: 0;
   margin: auto;
 }
+
 .section-title p {
   margin-bottom: 0;
 }
@@ -141,11 +152,13 @@ section,
   font-size: 2rem;
   font-weight: 700;
 }
+
 .about .content ul i {
   font-size: 1.25rem;
   margin-right: 4px;
   color: #f96332;
 }
+
 .about .about-images img {
   border-radius: 10px;
 }
@@ -158,37 +171,45 @@ section,
   padding: 30px;
   border-radius: 10px;
 }
+
 .features-details .features-item h3 {
   font-weight: 700;
   font-size: 26px;
   margin-bottom: 15px;
 }
+
 .features-details .features-item .more-btn {
   background-color: #f96332;
   color: #ffffff;
   padding: 6px 30px;
   border-radius: 6px;
 }
+
 .features-details .features-item .more-btn:hover {
   background-color: color-mix(in srgb, #f96332, transparent 20%);
 }
+
 .features-details .features-item ul {
   list-style: none;
   padding: 0;
 }
+
 .features-details .features-item ul li {
   padding-bottom: 10px;
   display: flex;
   align-items: center;
 }
+
 .features-details .features-item ul li:last-child {
   padding-bottom: 0;
 }
+
 .features-details .features-item ul li i {
   font-size: 20px;
   margin-right: 10px;
   color: #f96332;
 }
+
 .features-details .features-item img {
   border-radius: 15px;
 }
@@ -200,6 +221,7 @@ section,
   position: relative;
   min-height: 400px;
 }
+
 .more-features .features-image img {
   position: absolute;
   inset: 0;
@@ -207,28 +229,33 @@ section,
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   z-index: 1;
 }
+
 .more-features h3 {
   font-size: 28px;
   font-weight: 700;
   margin-bottom: 20px;
 }
+
 .more-features .icon-box {
   margin-top: 30px;
 }
+
 .more-features .icon-box i {
   color: #f96332;
   margin-right: 15px;
   font-size: 24px;
   line-height: 1.2;
 }
+
 .more-features .icon-box h4 {
   font-weight: 600;
   margin-bottom: 10px;
   font-size: 18px;
 }
+
 .more-features .icon-box p {
   line-height: 24px;
   font-size: 14px;
@@ -241,11 +268,13 @@ section,
 .contact button {
   background-color: #f96332;
 }
+
 .contact .info-item {
   background-color: #ffffff;
   padding: 20px 0 30px 0;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
 }
+
 .contact .info-item i {
   font-size: 20px;
   color: #f96332;
@@ -260,12 +289,14 @@ section,
   border-radius: 50%;
   border: 2px dotted color-mix(in srgb, #f96332, transparent 40%);
 }
+
 .contact .info-item h3 {
   font-size: 20px;
   font-size: 18px;
   font-weight: 700;
   margin: 10px 0;
 }
+
 .contact .info-item p {
   padding: 0;
   margin-bottom: 0;
@@ -278,23 +309,27 @@ section,
   max-width: 100%;
   margin: auto;
 }
+
 .carousel .carousel-inner {
   border-radius: 15px;
   overflow: hidden;
   height: 100%;
 }
+
 .carousel .carousel-inner img {
   border-radius: 15px;
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
+
 .carousel .carousel-thumbnails {
   display: flex;
   justify-content: center;
   margin-top: 10px;
 }
+
 .carousel .carousel-thumbnails img {
   width: 60px;
   height: 60px;
@@ -302,23 +337,28 @@ section,
   margin: 0 5px;
   cursor: pointer;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   transition: transform 0.3s;
 }
+
 .carousel .carousel-thumbnails img:hover {
   transform: scale(1.1);
 }
+
 .carousel .carousel-item {
   background-color: #000;
   transition: opacity 0.5s ease-in-out;
   opacity: 0;
 }
+
 .carousel .carousel-item.active {
   opacity: 1;
 }
+
 .carousel .carousel-item.active img {
   opacity: 1;
 }
+
 .carousel .carousel-item img {
   opacity: 0;
   transition: opacity 0.5s ease-in-out;
@@ -375,10 +415,12 @@ section,
   from {
     transform: perspective(500px) rotateX(-16deg) rotateY(0deg);
   }
+
   to {
     transform: perspective(500px) rotateX(-16deg) rotateY(360deg);
   }
 }
+
 .banner .slider .item {
   position: absolute;
   inset: 0 0 0 0;
@@ -389,7 +431,7 @@ section,
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .banner .content {
@@ -445,42 +487,52 @@ section,
     height: 100px;
     left: calc(50% - 40px);
   }
+
   .banner .slider .item {
     transform: rotateY(calc((var(--position) - 1) * 360 / var(--quantity) * 1deg)) translateZ(300px);
   }
+
   .banner .content h1 {
     text-align: center;
     width: 100%;
     text-shadow: 0 10px 20px #000;
     font-size: 7em;
   }
+
   .banner .content .author {
     color: #fff;
     text-shadow: 0 10px 20px #000;
     z-index: 2;
   }
 }
+
 @media screen and (max-width: 767px) {
   .banner .slider {
     width: 100px;
     height: 150px;
     left: calc(50% - 50px);
   }
+
   .banner .slider .item {
     transform: rotateY(calc((var(--position) - 1) * 360 / var(--quantity) * 1deg)) translateZ(180px);
   }
+
   .banner .content h1 {
     font-size: 4em;
   }
+
   .banner .content {
     width: 100%;
   }
 }
+
 @media all and (min-width: 992px) {
-  .sidebar .nav > li.active-pro {
+  .sidebar .nav>li.active-pro {
     position: absolute;
     width: 100%;
     bottom: 10px;
     right: 10px;
   }
-}/*# sourceMappingURL=style.css.map */
+}
+
+/*# sourceMappingURL=style.css.map */

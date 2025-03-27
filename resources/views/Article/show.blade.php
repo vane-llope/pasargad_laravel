@@ -1,4 +1,8 @@
 <x-layout>
+     
+     
+@section('title',  $article['title_'. app()->getLocale()] )
+@section('description', $article['summary_'. app()->getLocale()] )
      @include('partials._navbar')
      <div class="space"></div>
        <div class="container" data-aos="fade-up" data-aos-delay="100">

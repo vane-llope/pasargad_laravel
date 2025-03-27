@@ -15,6 +15,7 @@ return [
     'projectTypes' => 'Project Types',
     'quarries' => 'Quarries',
     'logout' => 'Logout',
+    'password' => 'password',
     'dashboard' => 'Dashboard',
     'search' => 'Search',
     'pasargad' => 'Pasargad',
@@ -35,6 +36,7 @@ return [
     'name' => 'Name',
     'code' => 'Code',
     'type' => 'Type',
+    'bestSelling' => 'Best Selling',
     'notFound' => 'No Item Was Found',
     'tensile_strength' => 'Tensile_Strength',
     'water_absorption_rate' => 'Water_Absorption_Rate',
@@ -79,4 +81,6 @@ return [
     'pasargadStoneCompany' => 'Pasargad Stone Company',
     'contactUsHours' => 'Contact Us. The working hours of Pasargad complex are Saturday to Wednesday 8:00 AM - 5:00 PM and Thursday 8:00 AM - 2:00 PM',
     'uniqueVarietyFinestStones' => 'A Unique Variety of the Finest Natural Stones',
+    'naturalStoneProducer' => 'natural stone producer',
+    'bestselling' => 'bestselling'
 ];

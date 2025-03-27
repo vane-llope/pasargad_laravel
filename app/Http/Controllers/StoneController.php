@@ -29,6 +29,7 @@ class StoneController extends Controller
     {
         $formFields = $request->validate([
             'code' => 'required',
+            'bestselling' => 'required',
             'name_fa' => 'required',
             'name_en' => 'required',
             'tensile_strength_fa' => 'required',
@@ -67,6 +68,7 @@ class StoneController extends Controller
 
         $formFields = $request->validate([
             'code' => 'required',
+            'bestselling' => 'required',
             'name_fa' => 'required',
             'name_en' => 'required',
             'tensile_strength_fa' => 'required',
@@ -86,7 +88,6 @@ class StoneController extends Controller
             'stone_type_id' => 'required'
         ]);
 
-
         if ($request->hasFile('image')) {
             // Check if there's an old image and delete it
             if ($Stone->image && Storage::disk('public')->exists($Stone->image)) {
@@ -100,6 +101,7 @@ class StoneController extends Controller
             $formFields['image'] = $Stone->image;
         }
 
+        // dd($formFields);
         $Stone->update($formFields);
 
         return redirect('/stones/manage')->with('message', 'Stone Updated Successfully!');

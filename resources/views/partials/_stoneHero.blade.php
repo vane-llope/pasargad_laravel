@@ -1,7 +1,7 @@
 
 <div class="swiper-box pt-5" style="direction: ltr">
 
-    <h1 class="my-5 text-light">پرفروش ترین ها</h1>
+    <h1 class="my-5 text-light">{{__('messages.bestSelling')}}</h1>
 
     <!-- Swiper -->
     <div class="swiper mySwiper">

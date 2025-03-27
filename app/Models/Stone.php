@@ -10,6 +10,7 @@ class Stone extends Model
     use HasFactory;
     protected $fillable = [
         'code',
+        'bestselling',
         'name_fa',
         'name_en',
         'image',

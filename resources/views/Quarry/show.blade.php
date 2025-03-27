@@ -1,4 +1,7 @@
 <x-layout>
+     
+@section('title',  $quarry['name_'. app()->getLocale()] )
+@section('description', $quarry['name_'. app()->getLocale()] )
      @include('partials._navbar')
      <div class="space"></div>
        <div class="container"data-aos="fade-up" data-aos-delay="100" >

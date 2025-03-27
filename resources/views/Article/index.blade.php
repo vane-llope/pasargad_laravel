@@ -1,10 +1,14 @@
 <x-layout>
+
+  @section('title',  __('messages.pasargad') )
+  @section('description', __('messages.naturalStoneProducer') )
+
   @include('partials._navbar')
       <div class="space"></div>
      <div class="container">
   @include('partials._search')
          @if(count($articles)==0) 
-         <p>No Article</p>
+         <p>{{__('messages.notFound')}}</p>
        @else
         @foreach ($articles as $article)
         <div class="row my-5" >

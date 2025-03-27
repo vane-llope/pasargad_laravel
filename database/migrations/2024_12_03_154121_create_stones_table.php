@@ -13,6 +13,7 @@ return new class extends Migration {
         Schema::create('stones', function (Blueprint $table) {
             $table->id();
             $table->string('code');
+            $table->boolean('bestselling')->default(false);
             $table->string('name_fa');
             $table->string('name_en');
             $table->string('image');

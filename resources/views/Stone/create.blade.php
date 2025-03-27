@@ -165,6 +165,27 @@
                     <p class="text-danger">{{ $message }}</p>
                 @enderror
             </div>
+
+           
+
+            <div class="form-check form-switch my-4 h4">
+                <!-- Hidden input to set a default value -->
+                <input type="hidden" name="bestselling" value="0" />
+                
+                <!-- Checkbox input -->
+                <input 
+                  class="form-check-input" 
+                  name="bestselling" 
+                  value="1" 
+                  type="checkbox" 
+                  role="switch" 
+                  id="switchCheckDefault"
+                  {{ old('bestselling') ? 'checked' : '' }} 
+                />
+                
+                <label class="form-check-label" for="switchCheckDefault">{{ __('messages.bestselling') }}</label>
+              </div>
+              
             
               <x-image-uploader :image="null" />
               </div>

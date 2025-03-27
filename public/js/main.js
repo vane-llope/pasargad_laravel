@@ -1,5 +1,4 @@
-
-//new line saving
+// Save and display text with new line saving
 function saveAndDisplayText()
 {
     const textareas = document.querySelectorAll('.myTextarea');
@@ -28,23 +27,27 @@ document.querySelectorAll('.myTextarea').forEach(textarea =>
         }
     });
 });
-//set diraction
+
+// Set page direction on load
 document.addEventListener('DOMContentLoaded', function ()
 {
     var direction = localStorage.getItem('direction');
     if (direction)
     {
         document.documentElement.setAttribute('dir', direction);
+        updateDropdownDirection(direction);
     }
 });
 
+// Set and save direction
 function setDirection(direction)
 {
     document.documentElement.setAttribute('dir', direction);
     localStorage.setItem('direction', direction);
+    updateDropdownDirection(direction);
 }
 
-//setDirectionTemperary
+// Temporarily set direction for testing or dynamic changes
 function setDirectionTemperary(direction, element)
 {
     document.documentElement.setAttribute('dir', direction);
@@ -61,16 +64,45 @@ function setDirectionTemperary(direction, element)
     element.style.color = 'black'; // Set the active link to black
 }
 
-/**
-  * Animation on scroll function and init
-  */
-function aosInit()
+// Update dropdown direction based on page direction
+function updateDropdownDirection(direction)
 {
+    const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+    dropdownMenus.forEach(menu =>
+    {
+        if (direction === 'rtl')
+        {
+            menu.style.textAlign = 'right';
+            menu.style.left = 'auto';
+            menu.style.right = '0';
+        } else if (direction === 'ltr')
+        {
+            menu.style.textAlign = 'left';
+            menu.style.right = 'auto';
+            menu.style.left = '0';
+        }
+    });
+}
+
+/**
+ * Animation on scroll function and init
+ */
+document.addEventListener('DOMContentLoaded', function ()
+{
+    // Show the loader
+    document.getElementById('loader').style.display = 'block';
+
+    // Initialize AOS (Animation on Scroll)
     AOS.init({
         duration: 500,
         easing: 'ease-in-out',
         once: true,
         mirror: false
     });
-}
-window.addEventListener('load', aosInit);
+
+    // Hide the loader when everything is loaded
+    window.addEventListener('load', function ()
+    {
+        document.getElementById('loader').style.display = 'none';
+    });
+});

@@ -22,10 +22,11 @@
 <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
       <!--swiper-->
-    <title>PASARGAD</title>
+      <title>@yield('title')</title>
+      <meta name="description" content="@yield('description')">
 </head>
 <body>
-
+    <div id="loader" class="loader"></div>
    <x-flash-message/>
    <div class="overflow-hidden" data-aos="fade-out" data-aos-delay="10">
     {{$slot}}

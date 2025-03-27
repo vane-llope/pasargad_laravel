@@ -18,9 +18,9 @@
                         data-bs-toggle="dropdown" aria-expanded="false">
                         {{ __('messages.stones') }}
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu my-1" aria-labelledby="navbarDropdown">
                         @foreach ($stoneTypes as $stoneType)
-                            <li><a class="dropdown-item text-light fw-bold"
+                            <li class="p-2"><a class="text-decoration-none text-light fw-bold"
                                     href="/stones?search={{  $stoneType['name_' . app()->getLocale()]}}">{{ $stoneType['name_' . app()->getLocale()] }}</a>
                             </li>
                         @endforeach
@@ -31,9 +31,9 @@
                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         {{ __('messages.projects') }}
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                    <ul class="dropdown-menu my-1" aria-labelledby="navbarDropdown2">
                         @foreach ($projectTypes as $projectType)
-                            <li><a class="dropdown-item text-light fw-bold"
+                            <li class="p-2"><a class="text-decoration-none text-light fw-bold"
                                     href="/projects?search={{ $projectType['name_' . app()->getLocale()] }}">{{ $projectType['name_' . app()->getLocale()] }}</a>
                             </li>
                         @endforeach
@@ -44,9 +44,9 @@
                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         {{ __('messages.quarries') }}
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                    <ul class="dropdown-menu my-1" aria-labelledby="navbarDropdown3">
                         @foreach ($stoneTypes as $stoneType)
-                            <li><a class="dropdown-item text-light fw-bold"
+                            <li class="p-2"><a class="text-decoration-none text-light fw-bold"
                                     href="/quarries?search={{ $stoneType['name_' . app()->getLocale()]  }}">{{ $stoneType['name_' . app()->getLocale()] }}</a>
                             </li>
                         @endforeach
@@ -58,10 +58,10 @@
                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         {{ __('messages.language') }}
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown4">
-                        <li><a class="dropdown-item text-light fw-bold" href="{{ url('/setlocale/fa') }}"
+                    <ul class="dropdown-menu my-1" aria-labelledby="navbarDropdown4">
+                        <li class="p-2"><a class="text-decoration-none text-light fw-bold" href="{{ url('/setlocale/fa') }}"
                                 onclick="setDirection('rtl')">فارسی</a></li>
-                        <li><a class="dropdown-item text-light fw-bold" href="{{ url('/setlocale/en') }}"
+                        <li class="p-2"><a class="text-decoration-none text-light fw-bold" href="{{ url('/setlocale/en') }}"
                                 onclick="setDirection('ltr')">English</a></li>
                     </ul>
 

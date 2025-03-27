@@ -169,6 +169,23 @@
               <p class="text-danger">{{ $message }}</p>
             @enderror
           </div>
+
+          
+          <div class="form-check form-switch my-4 h4">
+            <input type="hidden" name="bestselling" value="0" />
+            <input 
+              class="form-check-input" 
+              name="bestselling" 
+              value="1" 
+              type="checkbox" 
+              role="switch" 
+              id="switchCheckDefault"
+              {{ $stone->bestselling ? 'checked' : 0 }} 
+            />
+            <label class="form-check-label" for="switchCheckDefault">{{ __('messages.bestselling') }}</label>
+          </div>
+          
+          
           
           <x-image-uploader :image="$stone->image" />
   

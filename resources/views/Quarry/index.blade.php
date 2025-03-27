@@ -1,10 +1,13 @@
 <x-layout>
+  
+@section('title',  __('messages.pasargad') )
+@section('description', __('messages.naturalStoneProducer') )
   @include('partials._navbar')
   <div class="space"></div>
      <div class="container">
   @include('partials._search')
          @if(count($quarries)==0) 
-         <p>No quarry</p>
+         <p>{{__('messages.notFound')}}</p>
        @else
 
        <section>

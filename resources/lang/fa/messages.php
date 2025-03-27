@@ -15,6 +15,7 @@ return [
     'projectTypes' => 'نوع پروژه',
     'quarries' => 'معادن',
     'logout' => 'خروج',
+    'password' => 'پسورد',
     'dashboard' => 'داشبورد',
     'search' => 'جستوجو',
     'pasargad' => 'پاسارگاد',
@@ -36,6 +37,7 @@ return [
     'code' => 'کد',
     'notFound' => 'آیتمی یافت نشد',
     'type' => 'نوع',
+    'bestSelling' => 'پرفروش ترین ها',
     'tensile_strength' => 'استحکام کششی',
     'water_absorption_rate' => 'نرخ جذب آب',
     'compressive_strength' => 'مقاومت فشاری',
@@ -79,5 +81,7 @@ return [
     'pasargadStoneCompany' => 'شرکت سنگ پاسارگاد',
     'contactUsHours' => 'با ما در تماس باشید . روزها و ساعات کاری مجموعه پاسارگاد شنبه تا چهارشنبه 8.00 صبح - 17.00 شب و پنج شنبه 8.00 صبح - 14.00 عصر میباشد',
     'uniqueVarietyFinestStones' => 'تنوعی بی‌نظیر از برترین سنگ های طبیعی',
+    'naturalStoneProducer' => 'تولید کننده سنگ ساختمانی',
+    'bestselling' => 'پرفروش ترین ها'
 ];
 
